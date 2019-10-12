@@ -24,8 +24,8 @@ googleAnalytics = "UA-106539950-1" # Enable Google Analytics by entering your tr
   title = "Juan Enciso"
   subtitle = "IT Infraestructure Architect | SRE Engineer | Devops Technical Trainer"
   mdtext = '''
-Love building distributed systems, writing in bash, building CLI dev tools,\
-engaging with other engineering teams, and learning new things\
+Love building distributed systems, writing in bash and python, building CLI dev tools,\
+building platform, engaging with other engineering teams, and learning new things\
 ###### **Open Source, Technical Leadership, Automation, People**\
 '''
   alertbar = true
