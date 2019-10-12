@@ -22,7 +22,7 @@ googleAnalytics = "UA-106539950-1" # Enable Google Analytics by entering your tr
 [params.index]
   picture = "/images/author.png"
   title = "Juan Enciso"
-  subtitle = "IT Architect | SRE Engineer | Devops Technical Trainer"
+  subtitle = "IT Infraestructure Architect | SRE Engineer | Devops Technical Trainer"
   mdtext = '''
 Love building distributed systems, writing in bash, building CLI dev tools,\
 engaging with other engineering teams, and learning new things\
