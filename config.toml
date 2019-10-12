@@ -1,4 +1,4 @@
-baseURL = "http://enciso.website/"
+baseURL = "https://enciso.website/"
 languageCode = "en-us"
 title = "My Tech-Blog"
 theme = "mediumish"
