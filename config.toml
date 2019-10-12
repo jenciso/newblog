@@ -1,0 +1,55 @@
+baseURL = "http://enciso.website/"
+languageCode = "en-us"
+title = "My Tech-Blog"
+theme = "mediumish"
+summaryLength = 25
+copyright = "Juan Enciso - All rights reserved"
+enableEmoji = true
+publishDir = "docs"
+disqusShortname = "jenciso-github-io" # Enable comments by entering your Disqus shortname
+googleAnalytics = "UA-106539950-1" # Enable Google Analytics by entering your tracking id
+
+[params]
+  logo = "/images/logo.png"
+  description ="Read, write, share and be curious!"
+  #mailchimp = "you can provide a mailchimp-link here"
+
+[params.author]
+  name = "Juan Enciso"
+  thumbnail = "/images/author.png"
+  description = "Me. Who created this place to share some technology information in order to create a nice blog"
+
+[params.index]
+  picture = "/images/author.png"
+  title = "Juan Enciso"
+  subtitle = "IT Architect | SRE Engineer | Devops Technical Trainer"
+  mdtext = '''
+Love building distributed systems, writing in bash, building CLI dev tools,\
+engaging with other engineering teams, and learning new things\
+###### **Open Source, Technical Leadership, Automation, People**\
+'''
+  alertbar = true
+
+[params.social]
+  github = "jenciso"
+  linkedin = "juanenciso"
+  medium = "jenciso"
+  twitter = "jenciso"
+  instagram = "jencisoc"
+
+## Main Menu
+[[menu.main]]
+    name = "Blog"
+    weight = 100
+    identifier = "blog"
+    url = "/blog"
+[[menu.main]]
+    name = "About Me"
+    identifier = "about"
+    weight = 200
+    url = "/"
+[[menu.main]]
+    name = "Imprint"
+    identifier = "imprint"
+    weight = 200
+    url = "/static/imprint"
