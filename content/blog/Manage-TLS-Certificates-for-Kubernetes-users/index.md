@@ -2,7 +2,6 @@
 title: Manage TLS Certificates for Kubernetes users
 date: 2017-09-27
 comments: true
-image: /image/2814427622.png
 tags:
   - kubernetes
 ---
@@ -112,7 +111,7 @@ kubectl create -f juan.enciso-rbac.yaml
 
 ```
 kubectl get csr user-request-juan.enciso -o jsonpath='{.status.certificate}'\
-| base64 -d > juan.enciso.pem
+ | base64 -d > juan.enciso.pem
 ```
 
 ### User Steps (Part 2)
@@ -122,13 +121,10 @@ Create the kubectl configurations in the user desktop
 
 ```shell
 kubectl config set-cluster k8s-lab --insecure-skip-tls-verify=true \
---server=https://apik8s-lab.e-unicred.com.br
-
+  --server=https://apik8s-lab.e-unicred.com.br
 kubectl config set-credentials juan.enciso-lab --embed-certs=true \
---client-certificate=juan.enciso.pem --client-key=juan.enciso-key.pem 
-
+  --client-certificate=juan.enciso.pem --client-key=juan.enciso-key.pem 
 kubectl config set-context k8s-lab --cluster=k8s-lab --user=juan.enciso-lab
-
 kubectl  config use-context k8s-lab
 ```
 
@@ -142,7 +138,6 @@ kubectl version
 kubectl get nodes
 kubectl get pods --all-namespaces
 ```
-
 
 -------
 
