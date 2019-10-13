@@ -28,13 +28,11 @@ kubectl scale deployment -n gluster-heketi heketi --replicas=0
 ```
 
 Find out your `heketidbstorage` mount point 
-
 ```shell
 kubectl exec -it -n gluster-heketi heketi-5c88f4574d-jxkpl -- df -k
 ``` 
 
 Mount the gluster volume of `heketi.db`
-
 ```shell
 sudo apt-get -y install glusterfs-client
 sudo mount -t glusterfs 10.64.14.47:/heketidbstorage  /mnt
@@ -42,22 +40,19 @@ sudo mount -t glusterfs 10.64.14.47:/heketidbstorage  /mnt
 > `10.64.14.47` is one of my gluster servers
 
 Download the heketi binary
-
 ```shell
-wget https://github.com/heketi/heketi/releases/download/v9.0.0/heketi-v9.0.0.linux.amd64.tar.gz 
+wget https://github.com/heketi/heketi/releases/download/v9.0.0/heketi-v9.0.0.linux.amd64.tar.gz
 cd heketi
 sudo ./heketi db delete-bricks-with-empty-path --dbfile=/mnt/heketi.db --all
 umount /mnt
 ```
 
 Scale up your heketi service
-
 ```shell
 kubectl scale deployment -n gluster-heketi heketi --replicas=1
 ```
 
 Resync your devices in all the nodes
-
 ```shell
 kubectl exec -it -n gluster-heketi heketi-5c88f4574d-jxkpl -- \ 
   heketi-cli device resync 4c2a876a7829f3660e5a08cd1c0a5b1c

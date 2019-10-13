@@ -17,6 +17,7 @@ pygmentsStyle = "perldoc"
   description ="Read, write, share and be curious!"
   #mailchimp = "you can provide a mailchimp-link here"
   asciinema = false
+  copy2clipboard = false
 
 [params.author]
   name = "Juan Enciso"

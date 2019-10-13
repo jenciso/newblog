@@ -12,8 +12,16 @@
         {{- partial "_shared/js.html" . -}}
         {{ template "_internal/google_analytics.html" . }}
 
+{{ if or (.Site.Params.asciinema) (.Params.asciinema) }}
 {{ if .Params.asciinema }}
     <script src="{{ .Site.BaseURL }}js/asciinema-player.js"></script>
+{{ end }}
+{{ end }}
+
+{{ if or (.Site.Params.copy2clipboard) (.Params.copy2clipboard) }}
+{{ if .Params.copy2clipboard }}
+    <script src="{{ .Site.BaseURL }}js/clipboard.js"></script>
+{{ end }}
 {{ end }}
     </body>
 </html>

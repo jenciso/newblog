@@ -3,10 +3,10 @@ title: Embedding asciinema cast in your Hugo site
 date: 2019-06-02
 published: true
 comments: true
+asciinema: true
 tags:
   - hugo
   - asciinema
-asciinema: true
 ---
 
 
@@ -30,13 +30,13 @@ I will show you how you should setup you hugo template to use asciinema. Follow 
 
 ### Download the latest [asciinema-player release](https://github.com/asciinema/asciinema-player/releases).
 
-```
+```shell
 wget https://github.com/asciinema/asciinema-player/releases/download/v2.6.1/asciinema-player.css
 wget https://github.com/asciinema/asciinema-player/releases/download/v2.6.1/asciinema-player.js
 ```
 Now, you have 2 files. you need to put both into the `static/` folder
 
-```
+```shell
 $ ls -l static/css/asciinema-player.css 
 -rw-rw-r-- 1 jenciso jenciso 50722 Fev 21  2018 static/css/asciinema-player.css
 $ ls -l static/js/asciinema-player.js 
@@ -62,7 +62,7 @@ And the last one, before the `</body>` tag in your template’s baseof, in my ca
 
 Create a file `layouts/shortcodes/asciinema.html` with the following contents:
 
-```html
+```python
 <p>
     <asciinema-player
         src="/casts/{{ with .Get "key" }}{{ . }}{{ end }}.cast"
