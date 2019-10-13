@@ -1,13 +1,11 @@
 ---
+title: Embedding asciinema cast in your Hugo site
 date: 2019-06-02
 published: true
 comments: true
-title: Embedding asciinema cast in your Hugo site
 tags:
   - hugo
   - asciinema
-categories:
-  - linux
 asciinema: true
 ---
 
