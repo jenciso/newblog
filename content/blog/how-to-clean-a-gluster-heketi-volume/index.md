@@ -2,6 +2,7 @@
 title: How to cleanup a Gluster Heketi volume
 date: 2019-06-03
 description: how to clean a gluster heketi environment
+comments: true
 tags:
   - gluster
   - heketi
