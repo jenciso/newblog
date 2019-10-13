@@ -16,7 +16,7 @@ My company use the Palo Alto Networks solution to offer a VPN service for their 
 
 Fedora users
 
-```console
+```shell
 sudo dnf -f install libxml2-devel \
   zlib-devel \
   openssl-devel \
@@ -31,7 +31,7 @@ sudo dnf -f install libxml2-devel \
 
 Ubuntu users 
 
-```
+```shell
 sudo apt-get install \
   build-essential gettext autoconf automake libproxy-dev \
   libxml2-dev libtool vpnc-scripts pkg-config \
@@ -42,7 +42,7 @@ sudo apt-get install \
 
 After, you need to download the repo for dlenski github pages and compile it
 
-```console
+```shell
 git clone https://github.com/dlenski/openconnect.git
 cd openconnect
 git checkout globalprotect
@@ -54,7 +54,7 @@ sudo make install
 
 Load the shared libraries
 
-```console
+```shell
 sudo ldconfig
 ```
 
@@ -62,7 +62,7 @@ sudo ldconfig
 
 Finally, you can test it!
 
-```
+```shell
 sudo /usr/local/sbin/openconnect --protocol=gp vpn.mycompany.com.br --dump -v
 ```
 
