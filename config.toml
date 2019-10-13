@@ -13,6 +13,7 @@ googleAnalytics = "UA-106539950-1" # Enable Google Analytics by entering your tr
   logo = "/images/logo.png"
   description ="Read, write, share and be curious!"
   #mailchimp = "you can provide a mailchimp-link here"
+  asciinema = false
 
 [params.author]
   name = "Juan Enciso"
