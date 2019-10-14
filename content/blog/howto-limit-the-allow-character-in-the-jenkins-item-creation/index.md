@@ -1,5 +1,5 @@
 ---
-title: How to limit the allowed characters in Jenkins creation items
+title: How to limit the allowed characters in Jenkins items
 date: 2019-10-14
 comments: true
 tags:
