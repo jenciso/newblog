@@ -22,7 +22,13 @@ On my company, we restricted the jenkins item name to use only alphanumeric char
 
 ![kafka regexp](/images/kafka_regexp.png)
 
-Source: 
+Testing:
+
+![](https://files.slack.com/files-pri/T0G7ZH5PX-FPCULEBTJ/image.png)
+
+-----
+
+Sources:
 
 https://groups.google.com/forum/#!msg/jenkinsci-users/n9YqCkWDNhM/kTP5x-_2DwAJ
 
