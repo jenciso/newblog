@@ -1,5 +1,5 @@
 ---
-title: How to limit the allow characters in the jenkins creation item
+title: How to limit the allowed characters in Jenkins creation items
 date: 2019-10-14
 comments: true
 tags:
@@ -24,7 +24,7 @@ On my company, we restricted the jenkins item name to use only alphanumeric char
 
 Testing:
 
-![](https://files.slack.com/files-pri/T0G7ZH5PX-FPCULEBTJ/image.png)
+![jenkins_regexp_test](/images/jenkins_regexp_test.png)
 
 -----
 
