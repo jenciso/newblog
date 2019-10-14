@@ -57,4 +57,4 @@ building platform, engaging with other engineering teams, and learning new thing
     name = "CV"
     identifier = "cv"
     weight = 200
-    url = "/cv/index.html"
+    url = "/cv"
