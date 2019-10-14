@@ -2,6 +2,7 @@
 title: Manage TLS Certificates for Kubernetes users
 date: 2017-09-27
 comments: true
+copy2clipboard: true
 tags:
   - kubernetes
 ---
