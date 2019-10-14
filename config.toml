@@ -15,7 +15,7 @@ pygmentsStyle = "perldoc"
 [params]
   logo = "/images/logo.png"
   description ="Read, write, share and be curious!"
-  #mailchimp = "you can provide a mailchimp-link here"
+  mailchimp = "https://gmail.us20.list-manage.com/subscribe/post?u=fcd0d13593259ece3901cc6b1&amp;id=658aa507ab"
   asciinema = false
   copy2clipboard = false
 
