@@ -1,6 +1,10 @@
 ## My Tech-Blog
 
-Here some tips to create a Blog
+### Clone
+
+```shell
+git clone --recurse-submodules  git@github.com:jenciso/newblog
+```
 
 ### Themes
 
