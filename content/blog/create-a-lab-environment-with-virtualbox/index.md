@@ -11,7 +11,7 @@ tags:
 
 VirtualBox can create multiples Networks and differents kind of virtual machines. On this post, I will show you, how to create a lab environment step by step.
 
-On this scenario I will use two types of networks: `Nat Network`, the main nic will use it to ougoing packages and to communicate among the others VMs, and `Host-Only Adapter`, it will be use to get access from your desktop into any VMs.
+On this scenario, I will use two types of networks: `Nat Network`, the main nic will use it to ougoing packages and to communicate among the others VMs, and `Host-Only Adapter`, it will be use to get access from your desktop into any VMs.
 
 ----
 ## Steps 
@@ -89,7 +89,7 @@ VBoxManage storageattach $VM --storagectl "SATA Controller" --port 0 --device 0 
   --type hdd --medium ~/VirtualBox\ VMs/$VM/$VM.vdi
 ```
 
-Create a IDE controller to mount the iso installer image. in my case CentOS 7 minimal iso
+Create a IDE controller to mount the iso installer image. In my case, I use CentOS 7 minimal iso
 
 ```shell
 VBoxManage storagectl $VM --name "IDE Controller" --add ide
