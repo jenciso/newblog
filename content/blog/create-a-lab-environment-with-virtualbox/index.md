@@ -7,9 +7,11 @@ tags:
   - lab
 ---
 
-[VirtualBox](https://www.virtualbox.org/) is a great tool often used to simulate a entire lab. It could create for you all the needed to accomplish this goal. It can create multiples Nat Networks and differents kind of virtual machines. In this post, I will show you, how to create a lab environment step by step.
+[VirtualBox](https://www.virtualbox.org/) is a great tool often used to simulate a entire lab. It could create for you all the needed to accomplish this goal. 
 
-My scenario will use two types of networks: `Nat Network` (the main nic use to communicate all the VMs) and `Host-Only Adapter` (Usefully when you, from your desktop, want to access into the VMs)
+VirtualBox can create multiples Networks and differents kind of virtual machines. On this post, I will show you, how to create a lab environment step by step.
+
+On this scenario I will use two types of networks: `Nat Network`, the main nic will use it to ougoing packages and to communicate among the others VMs, and `Host-Only Adapter`, it will be use to get access from your desktop into any VMs.
 
 ----
 ## Steps 
