@@ -7,17 +7,18 @@ tags:
   - lab
 ---
 
-[VirtualBox](https://www.virtualbox.org/) is a great tool used to use for simulate a entire lab. It could create for you all the needed to accomplish this goal. It can create multiples Nat networks and differents kind of virtual machines. In this post, we will show you, step by step, how to create a lab environment for test purpose. 
+[VirtualBox](https://www.virtualbox.org/) is a great tool often used to simulate a entire lab. It could create for you all the needed to accomplish this goal. It can create multiples Nat Networks and differents kind of virtual machines. In this post, I will show you, how to create a lab environment step by step.
 
-We will use 2 networks: `Nat Network` and `Host Only Adapter`
+My scenario will use two types of networks: `Nat Network` (the main nic use to communicate all the VMs) and `Host-Only Adapter` (Usefully when you, from your desktop, want to access into the VMs)
 
 ----
+## Steps 
 
-#### VirtualBox Installation
+#### Installation
 
 Choose your appropiate package from this [URL](https://www.virtualbox.org/wiki/Linux_Downloads)
 
-In my case, Ubuntu, I only use this command:
+In my case,  I use Ubuntu, and it is simple:
 
 ```shell
 sudo apt-get update
@@ -25,7 +26,7 @@ sudo apt-get install virtualbox
 ```
 ----
 
-#### Host Network
+#### Setup Host Network
 
 ![](https://www.nakivo.com/blog/wp-content/uploads/2019/07/VirtualBox-network-settings-%E2%80%93-VMs-use-the-host-only-network.png)
 
@@ -35,7 +36,7 @@ This network is used to communicate with our Host (a.k.a our desktop machine) wi
 
 ----
 
-#### Nat Network
+#### Setup Nat Network
 
 ![](https://www.nakivo.com/blog/wp-content/uploads/2019/07/VirtualBox-network-modes-%E2%80%93-how-the-NAT-mode-works.png)
 
@@ -50,7 +51,7 @@ VBoxManage natnetwork start --netname natnet
 
 #### Create a VM base
 
-We need to create a VM to use it as base to create other VM's. In this example, we will use Centos 7 image, and the VM will be named `centos7`
+I need to create a VM to use it as base to create other VM's. In this example, I will use Centos 7 image, and the VM will be named `centos7`
 
 ```shell
 export VM=centos7
@@ -60,7 +61,7 @@ export VM=centos7
 VBoxManage createvm --name $VM --ostype RedHat_64 --register
 ```
 
-Now, we need to associate the natnetwork created previously with the nic1 interface of the VM
+Now, we need to associate the natnetwork created previously with the nic1 interface
 
 ```shell
 VBoxManage modifyvm $VM --nic1 natnetwork --nat-network1 natnet
@@ -71,13 +72,13 @@ Create another nic2 type `Host-Only Adapter`
 VBoxManage modifyvm $VM --nic2 hostonly --hostonlyadapter2 vboxnet0
 ```
 
-Increase the vCPU and Memory
+If you want to increase the CPU and Memory, here is a good opportunity
 
 ```shell
 VBoxManage modifyvm $VM --cpus 2 --memory 512
 ```
 
-Storage: Create a dynamic disk with 10GB and SATA Controller
+The VM will need a storage, then create a dynamic disk with 10GB and a SATA Controller to attach the disk at the sequence
 
 ```shell
 VBoxManage createhd --filename ~/VirtualBox\ VMs/$VM/$VM.vdi --size 10240
@@ -86,7 +87,7 @@ VBoxManage storageattach $VM --storagectl "SATA Controller" --port 0 --device 0 
   --type hdd --medium ~/VirtualBox\ VMs/$VM/$VM.vdi
 ```
 
-Create a IDE controller to mount the iso installer image
+Create a IDE controller to mount the iso installer image. in my case CentOS 7 minimal iso
 
 ```shell
 VBoxManage storagectl $VM --name "IDE Controller" --add ide
@@ -94,19 +95,19 @@ VBoxManage storageattach $VM --storagectl "IDE Controller" --port 0 \
   --device 0 --type dvddrive --medium ~/isos/CentOS-7-x86_64-Minimal-1810.iso
 ```
 
-Misc system options
+Finally, you could setup other misc system options
 
 ```shell
 VBoxManage modifyvm $VM --ioapic on
 VBoxManage modifyvm $VM --boot1 dvd --boot2 disk --boot3 none --boot4 none
 ```
 
-Finally you will have this configuration
+And done, you will have some VM created like this:
 
 ![](/images/virtualbox_centos7.png)
 
 
-Starting the VM
+Starting the VM (in headless mode) to install you new Centos7 VM
 
 ```shell
 VBoxHeadless -s $VM
@@ -119,9 +120,10 @@ VBoxManage storageattach $VM --storagectl "IDE Controller" --port 0 \
   --device 0 --type dvddrive --medium none
 ```
 
+
 ----
 
-### Tips \#
+### Others usefull commands \#
 
 Remove nat network 
 ```shell
