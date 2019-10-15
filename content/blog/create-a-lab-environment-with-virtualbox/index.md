@@ -11,7 +11,10 @@ tags:
 
 VirtualBox can create multiples Networks and differents kind of virtual machines. On this post, I will show you, how to create a lab environment step by step.
 
-On this scenario, I will use two types of networks: `Nat Network`, the main nic will use it to ougoing packages and to communicate among the others VMs, and `Host-Only Adapter`, it will be use to get access from your desktop into any VMs.
+On this scenario, I'll use Virtualbox 6 and two types of networks: 
+
+* `Nat Network`, the main nic will use it to ougoing packages and to communicate among the others VMs, and 
+* `Host-Only Adapter`, it will be use to get access from your desktop into any VMs.
 
 ----
 ## Steps 
@@ -26,6 +29,9 @@ In my case,  I use Ubuntu, and it is simple:
 sudo apt-get update
 sudo apt-get install virtualbox
 ```
+Consider install the VirtualBox Extension Pack from [here](https://download.virtualbox.org/virtualbox/6.0.12/Oracle_VM_VirtualBox_Extension_Pack-6.0.12.vbox-extpack)
+
+
 ----
 
 #### Setup Host Network
