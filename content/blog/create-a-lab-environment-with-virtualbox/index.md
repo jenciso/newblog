@@ -101,7 +101,12 @@ VBoxManage modifyvm $VM --ioapic on
 VBoxManage modifyvm $VM --boot1 dvd --boot2 disk --boot3 none --boot4 none
 ```
 
-Start the VM
+Finally you will have this configuration
+
+![](/images/virtualbox_centos7.png)
+
+
+Starting the VM
 
 ```shell
 VBoxHeadless -s $VM
