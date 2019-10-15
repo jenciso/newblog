@@ -2,6 +2,7 @@
 title: Create a lab environment with VirtualBox
 description: Using VirtualBox to create a lab environment
 date: 2019-10-14 23:45:00
+comments: true
 tags:
   - virtualbox
   - lab
