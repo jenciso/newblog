@@ -6,6 +6,12 @@
 git clone --recurse-submodules  git@github.com:jenciso/newblog
 ```
 
+### Update
+
+```
+git submodule update --recursive --remote
+```
+
 ### Themes
 
 https://themes.gohugo.io//theme/mediumish-gohugo-theme

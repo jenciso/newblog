@@ -38,7 +38,7 @@ Consider install the VirtualBox Extension Pack from [here](https://download.virt
 
 #### Setup Host Network
 
-![](https://www.nakivo.com/blog/wp-content/uploads/2019/07/VirtualBox-network-settings-%E2%80%93-VMs-use-the-host-only-network.png)
+![](host-only-network.png)
 
 By default, VirtualBox creates a `Host-Only Adapter` network, and it use this CIDR: `192.168.56.0/24`. 
 
@@ -48,9 +48,9 @@ This network is used to communicate with our Host (a.k.a our desktop machine) wi
 
 #### Setup Nat Network
 
-![](https://www.nakivo.com/blog/wp-content/uploads/2019/07/VirtualBox-network-modes-%E2%80%93-how-the-NAT-mode-works.png)
+![](NAT-mode-works.png)
 
-A Nat network is use by the VMs, to give access to external world. Virtualbox creates this network using theses steps.
+A Nat network is use by the VMs, to give access to external world. Virtualbox creates this network using these steps.
 
 E.g. Create the network `10.0.2.0/24` with name `natnet`
 
