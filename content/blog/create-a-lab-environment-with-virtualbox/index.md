@@ -3,6 +3,7 @@ title: Create a lab environment with VirtualBox
 description: Using VirtualBox to create a lab environment
 date: 2019-10-14 23:45:00
 comments: true
+copy2clipboard: true
 tags:
   - virtualbox
   - lab
@@ -39,9 +40,9 @@ Consider install the VirtualBox Extension Pack from [here](https://download.virt
 
 ![](https://www.nakivo.com/blog/wp-content/uploads/2019/07/VirtualBox-network-settings-%E2%80%93-VMs-use-the-host-only-network.png)
 
-By default, VirtualBox creates a `Host-Only Adapter` network using this CIDR: `192.168.56.0/24`. 
+By default, VirtualBox creates a `Host-Only Adapter` network, and it use this CIDR: `192.168.56.0/24`. 
 
-This network is used to communicate with our Host (a.k.a our desktop machine) with the Virtual Machine (VM). To create a network for our lab environment we needed a Nat Network
+This network is used to communicate with our Host (a.k.a our desktop machine) with the Virtual Machines (VMs). Also, on this lab environment we needed a Nat Network, who is another kind of network.
 
 ----
 
@@ -49,7 +50,9 @@ This network is used to communicate with our Host (a.k.a our desktop machine) wi
 
 ![](https://www.nakivo.com/blog/wp-content/uploads/2019/07/VirtualBox-network-modes-%E2%80%93-how-the-NAT-mode-works.png)
 
-Create the network `10.0.2.0/24` with name `natnet`
+A Nat network is use by the VMs, to give access to external world. Virtualbox creates this network using theses steps.
+
+E.g. Create the network `10.0.2.0/24` with name `natnet`
 
 ```shell
 VBoxManage natnetwork add --netname natnet --network "10.0.2.0/24" --enable --dhcp on
@@ -121,10 +124,100 @@ Starting the VM (in headless mode) to install you new Centos7 VM
 ```shell
 VBoxHeadless -s $VM
 ```
+----
+
+#### Install Centos OS
+
+Start the installation 
+
+![](vb-centos7-01.png)
+
+Setup your localtime. In my case, as I live in Brazil, it is `America/Sao_Paulo`
+
+![](vb-centos7-02.png)
+
+Create a `ansible` user, and make it Administrator
+
+![](vb-centos7-03.png)
+
+Also, you need to setup the root password
+
+![](vb-centos7-04.png)
+
+Finished the installation, login into the VM as root user and edit the first one NIC
+
+![](vb-centos7-05.png)
+
+You need to pay attention on this variables:
+
+```toml
+BOOTPROTO=static
+ONBOOT=yes
+IPADDR=10.0.2.2
+PREFIX=24
+GATEWAY=10.0.2.1
+DNS1=10.0.2.1
+```
+
+![](vb-centos7-06.png)
+
+Edit the second NIC
+
+![](vb-centos7-07.png)
+
+Pay attention on this variables
+
+```toml
+BOOTPROTO=static
+DEFROUTE=no
+ONBOOT=yes
+IPADDR=192.168.56.2
+PREFIX=24
+```
+
+![](vb-centos7-08.png)
+
+Restart the system network service and check the network 
+
+```shell
+systemctl restart network 
+ip addr | grep "inet "
+ip route
+```
+
+![](vb-centos7-09.png)
+
+
+#### Testing 
+
+SSH access to VM from the `Host-only Adapter`
+
+```console
+$ ssh root@192.168.56.2
+root@192.168.56.2's password: 
+Last login: Tue Oct 15 23:10:05 2019 from 192.168.56.1
+[root@localhost ~]# ping www.terra.com
+PING www.terra.com (208.70.188.57) 56(84) bytes of data.
+64 bytes from www.terra.com (208.70.188.57): icmp_seq=1 ttl=53 time=151 ms
+64 bytes from www.terra.com (208.70.188.57): icmp_seq=2 ttl=53 time=151 ms
+^C
+--- www.terra.com ping statistics ---
+3 packets transmitted, 2 received, 33% packet loss, time 2002ms
+[root@localhost ~]# 
+```
+
+#### Final Step
 
 Once you have configured the operating system, you can shutdown and eject the DVD.
 
+```console
+$ ssh root@192.168.56.2
+root@192.168.56.2's password:
+Last login: Tue Oct 15 23:10:05 2019 from 192.168.56.1
+[root@localhost ~]# halt -p
 ```
+
+```shell
 VBoxManage storageattach $VM --storagectl "IDE Controller" --port 0 \
   --device 0 --type dvddrive --medium none
 ```
