@@ -9,48 +9,53 @@ tags:
   - lab
 ---
 
-[VirtualBox](https://www.virtualbox.org/) is a great tool often used to simulate a entire lab. It could create for you all the needed to accomplish this goal. 
+[VirtualBox](https://www.virtualbox.org/) is a great tool often used to simulate an entire lab. It could create all need to accomplish this goal for you.
 
-VirtualBox can create multiples Networks and differents kind of virtual machines. On this post, I will show you, how to create a lab environment step by step.
+VirtualBox can create multiples Networks and different virtual machines (VMs). On this post, I will show you how to create a simple lab environment step by step.
 
-On this scenario, I'll use Virtualbox 6 and two types of networks: 
+On this scenario, I'll use Virtualbox 6 and two type of networks: 
 
-* `Nat Network`, the main nic will use it to ougoing packages and to communicate among the others VMs, and 
-* `Host-Only Adapter`, it will be use to get access from your desktop into any VMs.
+* `Nat Network`, it is the main network which will be use to communicate with the ouside world and other VMs.
+* `Host-Only Adapter`, this network is only used to get access on the VM from your desktop.
 
 ----
+
 ## Steps 
 
-#### Installation
+### Installation
 
-Choose your appropiate package from this [URL](https://www.virtualbox.org/wiki/Linux_Downloads)
+You need choose your appropiate package from this [URL](https://www.virtualbox.org/wiki/Linux_Downloads)
 
-In my case,  I use Ubuntu, and it is simple:
+For ubuntu users:
 
 ```shell
 sudo apt-get update
 sudo apt-get install virtualbox
 ```
-Consider install the VirtualBox Extension Pack from [here](https://download.virtualbox.org/virtualbox/6.0.12/Oracle_VM_VirtualBox_Extension_Pack-6.0.12.vbox-extpack)
+
+> Consider install the VirtualBox Extension Pack from [here](https://download.virtualbox.org/virtualbox/6.0.12/Oracle_VM_VirtualBox_Extension_Pack-6.0.12.vbox-extpack)
 
 
 ----
 
-#### Setup Host Network
+### Network Configuration
+
+#### Host Network 
 
 ![](host-only-network.png)
 
-By default, VirtualBox creates a `Host-Only Adapter` network, and it use this CIDR: `192.168.56.0/24`. 
+By default, VirtualBox already creates a `Host-Only Adapter` network, which use this CIDR: `192.168.56.0/24`.
 
-This network is used to communicate with our Host (a.k.a our desktop machine) with the Virtual Machines (VMs). Also, on this lab environment we needed a Nat Network, who is another kind of network.
+
+This network will be use only to communicate with your Host (a.k.a your desktop machine). Also, on this lab environment we need a Nat Network, whch is another kind of network
 
 ----
 
-#### Setup Nat Network
+#### Nat Network
 
 ![](NAT-mode-works.png)
 
-A Nat network is use by the VMs, to give access to external world. Virtualbox creates this network using these steps.
+A Nat network is the main network which will be use to communicate your VM with with the outside world. Virtualbox creates this network using these steps.
 
 E.g. Create the network `10.0.2.0/24` with name `natnet`
 
@@ -60,10 +65,11 @@ VBoxManage natnetwork start --netname natnet
 ```
 
 ----
+### Virtual Machine Setup
 
 #### Create a VM base
 
-I need to create a VM to use it as base to create other VM's. In this example, I will use Centos 7 image, and the VM will be named `centos7`
+I need to create a VM to use it as base to create other VM's. In this example, I will use Centos 7 image, and the VM will named `centos7`
 
 ```shell
 export VM=centos7
@@ -73,24 +79,25 @@ export VM=centos7
 VBoxManage createvm --name $VM --ostype RedHat_64 --register
 ```
 
-Now, we need to associate the natnetwork created previously with the nic1 interface
+Now, we need to associate the `natnetwork` created previously with the `nic1` interface
 
 ```shell
 VBoxManage modifyvm $VM --nic1 natnetwork --nat-network1 natnet
 ```
+
 Create another nic2 type `Host-Only Adapter`
 
 ```shell
 VBoxManage modifyvm $VM --nic2 hostonly --hostonlyadapter2 vboxnet0
 ```
 
-If you want to increase the CPU and Memory, here is a good opportunity
+If you want to increase the CPU and Memory, this moment is good to do that 
 
 ```shell
 VBoxManage modifyvm $VM --cpus 2 --memory 512
 ```
 
-The VM will need a storage, then create a dynamic disk with 10GB and a SATA Controller to attach the disk at the sequence
+The VM will need a storage, then create a dynamic disk with 10GB and a SATA Controller to attach it 
 
 ```shell
 VBoxManage createhd --filename ~/VirtualBox\ VMs/$VM/$VM.vdi --size 10240
@@ -99,7 +106,7 @@ VBoxManage storageattach $VM --storagectl "SATA Controller" --port 0 --device 0 
   --type hdd --medium ~/VirtualBox\ VMs/$VM/$VM.vdi
 ```
 
-Create a IDE controller to mount the iso installer image. In my case, I use CentOS 7 minimal iso
+Create a IDE controller to mount the iso installer image in order to begin the installation process. E.g. I will use the CentOS 7 minimal image iso.
 
 ```shell
 VBoxManage storagectl $VM --name "IDE Controller" --add ide
@@ -107,28 +114,29 @@ VBoxManage storageattach $VM --storagectl "IDE Controller" --port 0 \
   --device 0 --type dvddrive --medium ~/isos/CentOS-7-x86_64-Minimal-1810.iso
 ```
 
-Finally, you could setup other misc system options
+You could setup others miscellaneous system options
 
 ```shell
 VBoxManage modifyvm $VM --ioapic on
 VBoxManage modifyvm $VM --boot1 dvd --boot2 disk --boot3 none --boot4 none
 ```
 
-And done, you will have some VM created like this:
+And finally, you have a VM created like this:
 
 ![](/images/virtualbox_centos7.png)
 
 
-Starting the VM (in headless mode) to install you new Centos7 VM
+To start the VM and begin the installation process, use the follow command:
 
 ```shell
-VBoxHeadless -s $VM
+VBoxManage startvm $VM
 ```
+
 ----
 
 #### Install Centos OS
 
-Start the installation 
+Start the installation process
 
 ![](vb-centos7-01.png)
 
@@ -177,7 +185,7 @@ PREFIX=24
 
 ![](vb-centos7-08.png)
 
-Restart the system network service and check the network 
+Restart the system network service and check the network connectivity
 
 ```shell
 systemctl restart network 
@@ -226,6 +234,11 @@ VBoxManage storageattach $VM --storagectl "IDE Controller" --port 0 \
 ----
 
 ### Others usefull commands \#
+
+Start in headless mode
+```
+VBoxHeadless -s $VM
+```
 
 Remove nat network 
 ```shell
