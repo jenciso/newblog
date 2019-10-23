@@ -3,18 +3,17 @@ title: Manage TLS Certificates for Kubernetes users
 date: 2017-09-27
 comments: true
 copy2clipboard: true
+aliases:
+  - "/blog/manage-tls-certificates-for-kubernetes-users/"
 tags:
   - kubernetes
 ---
 
 ### Intro 
 
-Probably, after to create your kubernetes cluster you will need to create access for other users, and for accomplish this task, you need to create certificates to authentication against the kube-apiserver service.
+After to create your kubernetes cluster, the most common next step is create user's access to the cluster. In order to do that, you'll need to create certificates to give authentication via kube-apiserver service. This process has two defined steps, the user steps, who will get access, and admin steps, who will give the access.
 
 ### User Steps
-
-Here, you have all the steps to do that:
-
 
 1. Download the cfssl binary. It is a Cloudflare tool help us to create the certificates
 
@@ -50,7 +49,7 @@ spec:
   - client auth
   ```
 
-4. The YAML file has to contain base64 encoded version of your signing `request` (the .csr file). You can easily encode it using:
+4. The YAML file should contain base64 encoded version of your signing `request` (the .csr file). To encode this, execute base64 command:
 
 ```sh
 cat juan.enciso.csr | base64 | tr -d '\n'
@@ -65,13 +64,13 @@ cat juan.enciso.csr | base64 | tr -d '\n'
 kubectl create -f certsignrequest.yml
 ```
 
-2. Approve certificate
+2. Approve the certificate created
 
 ```sh
 kubectl certificate approve user-request-juan.enciso
 ```
 
-3. Create Roles and ClusterRole in a file `juan.enciso-rbac.yaml`. E.g. Role: Edit default namespace, ClusterRole: View All Only
+3. Create Roles and ClusterRole using a file, e.g `juan.enciso-rbac.yaml`. In this case, the role will be: Only `edit` into the default namespace, and the ClusterRole will be `View All Only`
 
 ```yaml
 kind: ClusterRoleBinding
@@ -134,11 +133,10 @@ So, for testing purpose you could add the options `--kubeconfig ~/.kube/config-j
 
 ### Testing
 
+Execute common commands
+
 ```sh
 kubectl version
 kubectl get nodes
 kubectl get pods --all-namespaces
 ```
-
--------
-
