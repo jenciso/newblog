@@ -105,13 +105,20 @@ VBoxManage storagectl $VM --name "SATA Controller" --add sata --controller Intel
 VBoxManage storageattach $VM --storagectl "SATA Controller" --port 0 --device 0 \
   --type hdd --medium ~/VirtualBox\ VMs/$VM/$VM.vdi
 ```
+Create a IDE controller to mount the iso installer image in order to begin the installation process. E.g. I will use the CentOS 7 minimal image iso. 
 
-Create a IDE controller to mount the iso installer image in order to begin the installation process. E.g. I will use the CentOS 7 minimal image iso.
+> Previously you need to download the iso image
+
+```shell
+mkdir ~/isos/
+wget http://centos.usetelecom.com.br/centos/7.7.1908/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso 
+  -O ~/isos/
+```
 
 ```shell
 VBoxManage storagectl $VM --name "IDE Controller" --add ide
 VBoxManage storageattach $VM --storagectl "IDE Controller" --port 0 \
-  --device 0 --type dvddrive --medium ~/isos/CentOS-7-x86_64-Minimal-1810.iso
+  --device 0 --type dvddrive --medium ~/isos/CentOS-7-x86_64-Minimal-1908.iso
 ```
 
 You could setup others miscellaneous system options
