@@ -11,7 +11,7 @@ tags:
 
 Ubuntu 18.04 LTS ships with all-new color emoji for use in messaging apps, text editors, and also on the web. Emoji is nothing new for Ubuntu. Older versions of Ubuntu come with simple black-and-white emoticons, but what about if you want to use the `color emoji` in Ubuntu 16.04 LTS.
 
-In order to do that, you need to install a specific font to use it. Below, I show you the steps to accomplish this goal.
+In order to do that, you need to install a specific font to use it. Below, I'll show you what steps are necessary to accomplish this goal. ☺️
 
 
 ## Steps
