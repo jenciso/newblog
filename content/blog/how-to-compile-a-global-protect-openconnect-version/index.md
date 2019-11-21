@@ -35,7 +35,7 @@ Ubuntu users
 sudo apt-get install \
   build-essential gettext autoconf automake libproxy-dev \
   libxml2-dev libtool vpnc-scripts pkg-config \
-  libgnutls-dev
+  libgnutls28-dev
 ```
 
 #### Build and Install
@@ -63,7 +63,53 @@ sudo ldconfig
 Finally, you can test it!
 
 ```shell
-sudo /usr/local/sbin/openconnect --protocol=gp vpn.mycompany.com.br --dump -v
+sudo /usr/local/sbin/openconnect --protocol=gp vpn.mycompany.com --dump -v
+```
+
+#### Scripts
+
+`mycompany-vpn.sh`
+
+```bash
+#!/bin/bash
+
+case $1 in
+        disconnect|stop)
+                sudo kill $(pidof openconnect) && echo "the openconnect was disconnected"
+                sudo systemctl restart systemd-resolved.service && echo "DNS service was restarted"
+                ;;
+        status)
+                pid=$(pidof openconnect) && echo "the openconnect is running | pidof: $pid" || echo "the openconnect is stopped"
+                ;;
+        *)
+                echo "the openconnect is trying to connect..."
+                echo $(cat ~/mycompany.ocvpn.pass) | sudo openconnect -b --config=/home/jenciso/mycompany.ocvpn
+                ;;
+esac
+```
+
+`~/mycompany.ocvpn.pass`
+
+```
+SuperSecretPass
+```
+
+`mycompany.ocvpn`
+
+```
+user=juan.enciso
+passwd-on-stdin
+servercert=pin-sha256:axzKF1qMn0Ncyh8FIvSyg9SIRuSFfyn7ILk/20roII4=
+protocol=gp
+server=vpn.mycompany.com
+```
+
+Testing:
+
+```bash
+mycomapny-vpn.sh
+mycomapny-vpn.sh status
+mycomapny-vpn.sh disconnect
 ```
 
 ### Notes
