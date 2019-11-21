@@ -10,10 +10,10 @@ tags:
 ---
 
 
-Often, I use [asciinema](https://github.com/asciinema/asciinema) as a tool to show a specific command result or to explain step by step some linux setup, commonly runned in my terminal. 
+Every now and then I use [asciinema](https://github.com/asciinema/asciinema) tool to show or to explain some linux command step by step.
 
 
-Asciinema is an excellent tool when you need to show how to do something else, and very useful in technical blogs, documentation and landing pages alike. It allows you to create compact animations of commands along with their output and formatting with far less overhead than the alternative of creating a gif or mp4.
+Asciinema is an excellent tool when you need to show how to do something else and it is very useful to create technical blogs, to do documentation and landing pages alike. It help you to create a compact animations along with their output and formatting with far less overhead, if you compare it with another alternative like a gif or mp4.
 
 You can embed casts hosted on asciinema into your Hugo posts and pages by embedding a snippet like this directly into the markdown:
 
