@@ -3,6 +3,7 @@ title: How to compile a custom openconnect version
 comments: true
 title: Using a custom openconnect version for VPN
 date: 2017-10-21
+copy2clipboard: true
 tags:
   - vpn
   - openconnect
