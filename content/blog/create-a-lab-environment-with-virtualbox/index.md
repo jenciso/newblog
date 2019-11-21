@@ -32,8 +32,14 @@ For ubuntu users:
 sudo apt-get update
 sudo apt-get install virtualbox
 ```
+or
 
-> Consider install the VirtualBox Extension Pack from [here](https://download.virtualbox.org/virtualbox/6.0.12/Oracle_VM_VirtualBox_Extension_Pack-6.0.12.vbox-extpack)
+```shell
+wget https://download.virtualbox.org/virtualbox/6.0.14/virtualbox-6.0_6.0.14-133895~Ubuntu~xenial_amd64.deb
+sudo dpgk -i virtualbox-6.0_6.0.14-133895~Ubuntu~xenial_amd64.deb
+```
+
+> Consider install the VirtualBox Extension Pack from [here](https://download.virtualbox.org/virtualbox/6.0.14/Oracle_VM_VirtualBox_Extension_Pack-6.0.14.vbox-extpack)
 
 
 ----
@@ -111,7 +117,8 @@ Create a IDE controller to mount the iso installer image in order to begin the i
 
 ```shell
 mkdir ~/isos/
-wget http://centos.usetelecom.com.br/centos/7.7.1908/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso 
+wget \
+  http://centos.usetelecom.com.br/centos/7.7.1908/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso 
   -O ~/isos/
 ```
 
@@ -243,8 +250,8 @@ VBoxManage storageattach $VM --storagectl "IDE Controller" --port 0 \
 ### Others usefull commands \#
 
 Start in headless mode
-```
-VBoxHeadless -s $VM
+```shell
+VBoxManage startvm $VM --type headless
 ```
 
 Remove nat network 
