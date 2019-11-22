@@ -52,8 +52,13 @@ sudo dpgk -i virtualbox-6.0_6.0.14-133895~Ubuntu~xenial_amd64.deb
 
 By default, VirtualBox already creates a `Host-Only Adapter` network, which use this CIDR: `192.168.56.0/24`.
 
-
 This network will be use only to communicate with your Host (a.k.a your desktop machine). Also, on this lab environment we need a Nat Network, whch is another kind of network
+
+If you don't have this adapter, you need to create it with this simple command
+
+```shell
+VBoxManage hostonlyif create
+```
 
 ----
 
