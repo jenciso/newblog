@@ -29,13 +29,13 @@ I will show you how to setup you hugo to use asciinema. Follow these steps to ac
 
 ### Download the latest [asciinema-player release](https://github.com/asciinema/asciinema-player/releases).
 
-```shell
+```sh
 wget https://github.com/asciinema/asciinema-player/releases/download/v2.6.1/asciinema-player.css
 wget https://github.com/asciinema/asciinema-player/releases/download/v2.6.1/asciinema-player.js
 ```
 You need to put this files into `static/` folder
 
-```shell
+```sh
 $ ls -l static/css/asciinema-player.css 
 -rw-rw-r-- 1 jenciso jenciso 50722 Fev 21  2018 static/css/asciinema-player.css
 $ ls -l static/js/asciinema-player.js 
