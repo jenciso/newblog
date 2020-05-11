@@ -9,31 +9,32 @@ tags:
   - asciinema
 ---
 
+Every now and then I want to show step by step a process simply recording an output of my terminal, so commonly I use [asciinema](https://github.com/asciinema/asciinema) to do that.
 
-Every now and I need a tool to show step by step a process or simply recorded a output of my terminal, in this case, commonly I use [asciinema](https://github.com/asciinema/asciinema). 
+It is an excellent tool very useful to dynamic content which give you a good explanation of your process. It will create a compact animation along with their output and formatting with far less overhead, if you compare it with others alternative like a gif or mp4 files.
 
-Asciinema is an excellent tool very useful for create content with good explanation. It could help you to create compact animations along with their output and formatting with far less overhead, if you compare it with others alternative like a gif or mp4 files.
-
-use asciinema in your Hugo posts and pages by embedding a snippet like this directly as markdown:
+You could use asciinema in your Hugo posts and pages by embedding a snippet like this directly as markdown:
 
 ```html
 <script src="https://asciinema.org/a/186686.js" id="asciicast-186686" async></script>
 ```
 
-Although, this method works quietly, you have another method to use asciinema in your blog site without upload the cast file on public.
+Although, this method works quietly, you have another method to use asciinema in your blog site without upload the cast file on public, it is embedding the cast file
 
-## Embedding in Hugo with shortcodes
+## Setup 
 
 I will show you how to setup you hugo to use asciinema. Follow these steps to accomplish it.
 
+* Download the latest [asciinema-player release](https://github.com/asciinema/asciinema-player/releases).
 
-### Download the latest [asciinema-player release](https://github.com/asciinema/asciinema-player/releases).
+Using wget:
 
 ```sh
 wget https://github.com/asciinema/asciinema-player/releases/download/v2.6.1/asciinema-player.css
 wget https://github.com/asciinema/asciinema-player/releases/download/v2.6.1/asciinema-player.js
 ```
-You need to put this files into `static/` folder
+
+Put these files into `static/css` and `static/js` folders. Like this:
 
 ```sh
 $ ls -l static/css/asciinema-player.css 
@@ -42,7 +43,7 @@ $ ls -l static/js/asciinema-player.js
 -rw-rw-r-- 1 jenciso jenciso 582376 Fev 21  2018 static/js/asciinema-player.js
 ```
 
-You need to configure your hugo template files to use css and js files previously downloaded. 
+* You need to configure your hugo template files to use css and js files previously downloaded. 
 
 Insert this block in your `head` template section. In my case it's here: `layouts/partials/_shared/head.html`
 
@@ -59,7 +60,7 @@ And before the `</body>` tag in your template’s baseof. Ex.: `layouts/_default
 {{ end }}
 ```
 
-#### Create a shortcode
+* Create a shortcode
 
 Create a file `layouts/shortcodes/asciinema.html` with the this content:
 
@@ -111,7 +112,9 @@ tags:
 ---
 ```
 
-* Finally, the result should show something like this:
+### Result
+
+Finally, the result should show something like this:
 
 ```shell
 {{< asciinema key="249623" cols="158" rows="40" preload="1" speed="1" >}}
