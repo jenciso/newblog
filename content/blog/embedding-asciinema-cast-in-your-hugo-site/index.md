@@ -10,22 +10,21 @@ tags:
 ---
 
 
-Every now and then I use [asciinema](https://github.com/asciinema/asciinema) tool to show or to explain some linux command step by step.
+Every now and I need a tool to show step by step a process or simply recorded a output of my terminal, in this case, commonly I use [asciinema](https://github.com/asciinema/asciinema). 
 
+Asciinema is an excellent tool very useful for create content with good explanation. It could help you to create compact animations along with their output and formatting with far less overhead, if you compare it with others alternative like a gif or mp4 files.
 
-Asciinema is an excellent tool when you need to show how to do something else and it is very useful to create technical blogs, to do documentation and landing pages alike. It help you to create a compact animations along with their output and formatting with far less overhead, if you compare it with another alternative like a gif or mp4.
-
-You can embed casts hosted on asciinema into your Hugo posts and pages by embedding a snippet like this directly into the markdown:
+use asciinema in your Hugo posts and pages by embedding a snippet like this directly as markdown:
 
 ```html
 <script src="https://asciinema.org/a/186686.js" id="asciicast-186686" async></script>
 ```
 
-Although, this method works quietly, you also have another option to use that in your blog and with a better behavior, without upload the cast file created on the asciinema public site. Be careful, you need to think sometimes in security issues when you externalize some information and take care with some internal processes.
+Although, this method works quietly, you have another method to use asciinema in your blog site without upload the cast file on public.
 
 ## Embedding in Hugo with shortcodes
 
-I will show you how you should setup you hugo template to use asciinema. Follow these steps to accomplish it.
+I will show you how to setup you hugo to use asciinema. Follow these steps to accomplish it.
 
 
 ### Download the latest [asciinema-player release](https://github.com/asciinema/asciinema-player/releases).
@@ -34,7 +33,7 @@ I will show you how you should setup you hugo template to use asciinema. Follow 
 wget https://github.com/asciinema/asciinema-player/releases/download/v2.6.1/asciinema-player.css
 wget https://github.com/asciinema/asciinema-player/releases/download/v2.6.1/asciinema-player.js
 ```
-Now, you have 2 files. you need to put both into the `static/` folder
+You need to put this files into `static/` folder
 
 ```shell
 $ ls -l static/css/asciinema-player.css 
@@ -43,14 +42,16 @@ $ ls -l static/js/asciinema-player.js
 -rw-rw-r-- 1 jenciso jenciso 582376 Fev 21  2018 static/js/asciinema-player.js
 ```
 
-Then, you need to configure your template to use this files. So you have to add this block of code in your `head` template section. In my case it was here: `layouts/partials/_shared/head.html`
+You need to configure your hugo template files to use css and js files previously downloaded. 
+
+Insert this block in your `head` template section. In my case it's here: `layouts/partials/_shared/head.html`
 
 ```html
 {{ if .Params.asciinema }}
     <link rel="stylesheet" type="text/css" href="{{ .Site.BaseURL }}css/asciinema-player.css" />
 {{ end }}
 ```
-And the last one, before the `</body>` tag in your template’s baseof, in my case it was here: `layouts/_default/baseof.html`
+And before the `</body>` tag in your template’s baseof. Ex.: `layouts/_default/baseof.html`
 
 ```html
 {{ if .Params.asciinema }}
@@ -60,7 +61,7 @@ And the last one, before the `</body>` tag in your template’s baseof, in my ca
 
 #### Create a shortcode
 
-Create a file `layouts/shortcodes/asciinema.html` with the following contents:
+Create a file `layouts/shortcodes/asciinema.html` with the this content:
 
 ```python
 <p>
@@ -89,17 +90,28 @@ Create a file `layouts/shortcodes/asciinema.html` with the following contents:
 
 ### Testing
 
-Follow the instructions to create new casts. Save them to `static/casts/<key>.cast`.
+Create a new cast ans save it here `static/casts/<key>.cast`.
 
-1. You can now embed asciinema casts in your Hugo posts and pages with the following shortcode:
+* You can now embed asciinema casts in your Hugo posts and pages with the following shortcode:
 
 ```sh
 {{</* asciinema key="demo-cast" rows="10" preload="1" */>}}
 ```
-2. You also need to include `asciinema = true` in the frontmatter for you post too, to make sure the javascript and css assets are included.
 
+* You also need to include `asciinema = true` in the frontmatter for you post too, to make sure the javascript and css assets are included. Ex:
 
-Finally, you should end up with something like this:
+```yaml
+---
+title: Kubernetes Backup - ARK 
+description: Kubernetes backup process using ark
+asciinema: true
+tags:
+  - kubernetes
+  - backup
+---
+```
+
+* Finally, the result should show something like this:
 
 ```shell
 {{< asciinema key="249623" cols="158" rows="40" preload="1" speed="1" >}}
