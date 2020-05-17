@@ -1,18 +1,18 @@
-## My Tech-Blog
+# My Tech-Blog
 
-### To Clone
+## To Clone
 
 ```shell
 git clone --recurse-submodules  git@github.com:jenciso/newblog
 ```
 
-### To Update
+## To Update
 
 ```
 git submodule update --recursive --remote
 ```
 
-### What theme am I using?
+## What theme am I using?
 
 Theme: 
 
