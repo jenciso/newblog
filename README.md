@@ -1,27 +1,29 @@
 ## My Tech-Blog
 
-### Clone
+### To Clone
 
 ```shell
 git clone --recurse-submodules  git@github.com:jenciso/newblog
 ```
 
-### Update
+### To Update
 
 ```
 git submodule update --recursive --remote
 ```
 
-### Themes
+### What theme am I using?
+
+Theme: 
 
 https://themes.gohugo.io//theme/mediumish-gohugo-theme
 https://github.com/vjeantet/hugo-theme-casper
 
-### pygmentsStyle
+pygmentsStyle
 
 https://help.farbox.com/pygments.html
 
-### Highlight css 
+Highlight css 
 
 https://github.com/highlightjs/highlight.js/tree/master/src/styles
 
