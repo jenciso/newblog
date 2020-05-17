@@ -27,3 +27,7 @@ Highlight css
 
 https://github.com/highlightjs/highlight.js/tree/master/src/styles
 
+## Contact me
+
+Juan Enciso
+- juan.enciso@gmail.com
