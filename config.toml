@@ -1,6 +1,6 @@
 baseURL = "https://jenciso.github.io/"
 languageCode = "en-us"
-title = "My Tech-Blog"
+title = "Tech-Blog"
 theme = "mediumish"
 summaryLength = 25
 copyright = "Juan Enciso - All rights reserved"
@@ -14,7 +14,7 @@ pygmentsStyle = "monokai"
 
 [params]
   logo = "/images/logo.png"
-  description ="Read, write, share and be curious!"
+  description = "Just, sharing some of my technical experiences"
   mailchimp = "https://gmail.us20.list-manage.com/subscribe/post?u=fcd0d13593259ece3901cc6b1&amp;id=658aa507ab"
   asciinema = false
   copy2clipboard = false
@@ -22,7 +22,7 @@ pygmentsStyle = "monokai"
 [params.author]
   name = "Juan Enciso"
   thumbnail = "/images/author.png"
-  description = "Me. Who created this place to share some technology information in order to create a nice blog"
+  description = "IT Architect, SRE Engineer, DevOps Tools Trainer"
 
 [params.index]
   picture = "/images/author.png"
