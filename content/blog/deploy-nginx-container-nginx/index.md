@@ -8,14 +8,17 @@ tags:
   - terraform
 ---
 
+## Intro 
 
-Terraform works based on a configuration file, in this case config.tf. The configuration defines your infrastructure, in this instance as providers and resources.
+Terraform works using a configuration file named `config.tf`, it defines all the infrastructure to be created. You need to describe your providers and resources.
 
-A provider is an abstract way of handling the underlying infrastructure and responsible for managing the lifecycle of a resource.
+A _provider_ is an abstract way of handling the underlying infrastructure responsible for managing the lifecycle of a resource. E.g. docker, aws, etc
 
-A resource are components of your infrastructure, for example a container or image.
+A _resource_ are components of your infrastructure, for example a container or image.
 
-We will use a `config.tf` file to setup our lab environment.
+We will explain this process using a simple `config.tf` file in orden to setup our lab environment.
+
+### Defining a provider
 
 ```shell
 cat > config.tf << EOF
@@ -25,7 +28,9 @@ provider "docker" {
 EOF
 ```
 
-We can now start defining the resources of our infrastructure. The first resource is our Docker image. A resource has two parameters, one is a `TYPE` and second a `NAME`. The type is `docker_image` and the name is `nginx`. Within the block we define the name and tag of the Docker Image.
+We can now start defining the resources of our infrastructure. The first resource is our docker image. A resource has two parameters, one is a `TYPE` and the second is the `NAME`. The type is `docker_image` and name as `nginx`. 
+
+Here we can define the name and the tag of or docker Image.
 
 ```shell
 cat >> config.tf << EOF
@@ -35,7 +40,7 @@ resource "docker_image" "nginx" {
 EOF
 ```
 
-We can define our container resource. The resource type is `docker_container` and name as `nginx-server`. Within the block we set the resource parameters. We can reference other resources, such as a the `image`.
+The second resource to be use is the container resource. Here, the resource type is `docker_container` and name as `nginx-server`. Within the block we set the resource parameters. We can reference other resources, such as a the `image`.
 
 ```shell
 cat >> config.tf << EOF
@@ -59,13 +64,13 @@ EOF
 
 Once the configuration has been defined we need to create an execution plan. Terraform describes the actions required to achieve the desired state. The plan can be saved using -out. We'll apply the execution plan in the next step.
 
-First at all:
+Before we need to initialize our project 
 
 ```shell
 terraform init
 ```
 
-Now, to create a plan, use the CLI
+And the we could create our terraform plan
 
 ```shell
 terraform plan -out config.tfplan
@@ -88,8 +93,7 @@ echo "<h1>hello world</h1>" > /tmp/tutorial/www/index.html
 
 Once the plan has been created we need to apply it to reach our desired state.
 
-Using the CLI, terraform will pull any images required and launch new containers.
-
+> terraform will pull the image required and launch the new containers.
 
 ```shell
 terraform apply
@@ -97,14 +101,14 @@ terraform apply
 
 ## Inspecting Infrastructure
 
-You can use the Docker CLI to view the changes and see the newly launched container.
+Using the docker command to see the changes and the newly launched container.
 
 ```shell
 docker ps
 docker ps -f name=nginx-server-1 --format "table {{.Names}}\t{{.Status}}"
 ```
 
-you can inspect this in future using the terraform CLI
+You can inspect this in future using the terraform CLI
 
 ```shell
 terraform show
@@ -157,7 +161,7 @@ We can then apply the plan as we did in the previous step.
 terraform apply -auto-approve
 ```
 
-Now, scale your nginx-server to 8 replicas:
+Now, we scale our nginx-server up to 8 replicas:
 
 ```ruby
 resource "docker_container" "nginx-server" {
