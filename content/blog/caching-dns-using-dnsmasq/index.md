@@ -52,17 +52,15 @@ sudo systemctl restart NetworkManager
 
 ###  Install dnsmasq
 
+Remove the current `/etc/resolvconf` file
 ```shell
 unlink /etc/resolv.conf
 ```
 
+Install dnsmasq
 ```shell
-echo "nameserver 1.1.1.1" | sudo tee /etc/resolv.conf
-echo "nameserver 8.8.8.8" | sudo tee -a /etc/resolv.conf
 sudo apt-get install dnsmasq
 ```
-
-#### Setup
 
 Config your upstream dns
 ```shell
@@ -92,10 +90,10 @@ systemctl enable dnsmasq
 
 ## Test
 
-You should get `0 msec` in the next query.
+You should get `0 msec` in the next dns query.
 
 ```shell
-✔ 12:40:44 [x420ua] ~ $ dig www.google.com | grep "Query time"
+$ dig www.google.com | grep "Query time"
 ;; Query time: 0 msec
-✔ 12:40:45 [x420ua] ~ $
+$
 ```
