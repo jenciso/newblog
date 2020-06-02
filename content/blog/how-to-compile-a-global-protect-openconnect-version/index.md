@@ -1,7 +1,6 @@
 ---
-title: How to compile a custom openconnect version
+title: Custom openconnect vpn setup for use in Palo Alto appliances
 comments: true
-title: Using a custom openconnect version for VPN
 date: 2017-10-21
 copy2clipboard: true
 tags:
@@ -9,13 +8,17 @@ tags:
   - openconnect
 ---
 
-My company use the Palo Alto Networks solution to offer a VPN service for their employees. Personally, I prefer to use Openvpn when I need to setup a VPN connection. By default, the OpenVpn can not implement the global protect protocol, so I need to compile from the [source](https://github.com/dlenski/openconnect/tree/globalprotect)
+## Intro 
 
-### Compiling OpenVPN to use Global Protect Protocol
+My company use the Palo Alto Networks appliance in order to offer a VPN service for us. Normally, I use openconnect or openvpn client when I need to setup some VPN connection, but it doesn't work with Palo Alto devices. Openconnect client can't implement the gloabl protect protocol, at least not now.
 
-#### Requeriments
+By default, the OpenVpn can not implement the global protect protocol and it is necessary to build from scratch using the code [source](https://github.com/dlenski/openconnect/tree/globalprotect)
 
-Fedora users
+## Build your openconnect to use Global Protect Protocol
+
+The prerequisites is to install the libraries and packages needed to compile successfully the openconnect.
+
+For Fedora users the packages needed are:
 
 ```shell
 sudo dnf -f install libxml2-devel \
@@ -30,7 +33,7 @@ sudo dnf -f install libxml2-devel \
   libstoken 
 ```
 
-Ubuntu users 
+And for Ubuntu users:
 
 ```shell
 sudo apt-get install \
@@ -39,9 +42,7 @@ sudo apt-get install \
   libgnutls28-dev
 ```
 
-#### Build and Install
-
-After, you need to download the repo for dlenski github pages and compile it
+Then, you need to download the git repository and make it:
 
 ```shell
 git clone https://github.com/dlenski/openconnect.git
@@ -53,13 +54,11 @@ make
 sudo make install
 ```
 
-Load the shared libraries
+It is necessary to load the shared libraries
 
 ```shell
 sudo ldconfig
 ```
-
-#### Testing 
 
 Finally, you can test it!
 
@@ -67,9 +66,11 @@ Finally, you can test it!
 sudo /usr/local/sbin/openconnect --protocol=gp vpn.mycompany.com --dump -v
 ```
 
-#### Scripts
+## Scripts to setup your credentials
 
-`mycompany-vpn.sh`
+Here we have are scripts examples to automate your personal credentials and execute your vpn connection automatically
+
+Create a `mycompany-vpn.sh` file like this: 
 
 ```bash
 #!/bin/bash
@@ -89,23 +90,23 @@ case $1 in
 esac
 ```
 
-`~/mycompany.ocvpn.pass`
+A file `~/mycompany.ocvpn.pass` with your password:
 
 ```
 SuperSecretPass
 ```
 
-`mycompany.ocvpn`
+And finally a `mycompany.ocvpn` with aditional configuration:
 
 ```
-user=juan.enciso
+user=myuser
 passwd-on-stdin
 servercert=pin-sha256:axzKF1qMn0Ncyh8FIvSyg9SIRuSFfyn7ILk/20roII4=
 protocol=gp
 server=vpn.mycompany.com
 ```
 
-Testing:
+Run your vpn and test it!
 
 ```bash
 mycomapny-vpn.sh
@@ -113,7 +114,7 @@ mycomapny-vpn.sh status
 mycomapny-vpn.sh disconnect
 ```
 
-### Notes
+## References:
 
-[Here](https://serverfault.com/questions/584163/supplying-password-to-openconnect-started-via-start-stop-daemon) you have some ideas to create a init script.
+* [Here](https://serverfault.com/questions/584163/supplying-password-to-openconnect-started-via-start-stop-daemon) you have some ideas to create a init script.
 
