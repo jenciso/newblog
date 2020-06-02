@@ -97,3 +97,9 @@ $ dig www.google.com | grep "Query time"
 ;; Query time: 0 msec
 $
 ```
+
+## References
+
+https://vdemir.github.io/app/2018/06/16/Dnsmasq.html
+https://fedoramagazine.org/using-the-networkmanagers-dnsmasq-plugin/
+
