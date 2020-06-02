@@ -70,7 +70,7 @@ echo "nameserver 8.8.8.8" | sudo tee -a /etc/resolv.dnsmaq
 
 Config your `dnsmasq.conf` file. Use a cache-size parameter:
 ```shell
-tee /etc/dnsmasq.conf << EOF
+sudo tee /etc/dnsmasq.conf << EOF
 listen-address=127.0.0.1
 resolv-file=/etc/resolv.dnsmasq
 cache-size=2048
