@@ -20,9 +20,9 @@ Caching theses dns requests would be a good alternative to diminish your network
 
 ## Install Dnsmasq 
 
-### Prerequisites steps
+### Prerequisites
 
-Uninstall `systemd-resolved`
+Uninstall `systemd-resolved` package. It isn't necessary to have.
 
 ```shell
 sudo systemctl disable systemd-resolved
@@ -30,7 +30,7 @@ sudo systemctl stop systemd-resolved
 sudo apt-get remove systemd-resolved
 ```
 
-Disabled `dnsmasq` in NetworkManager. Ensure to have the `dns=none` line
+Disabled `dnsmasq` in the NetworkManager configuration. Ensure to have the `dns=none` line
 
 ```
 [main]
@@ -52,18 +52,50 @@ sudo systemctl restart NetworkManager
 
 ###  Install dnsmasq
 
-
 ```shell
 unlink /etc/resolv.conf
 ```
 
 ```shell
 echo "nameserver 1.1.1.1" | sudo tee /etc/resolv.conf
+echo "nameserver 8.8.8.8" | sudo tee -a /etc/resolv.conf
 sudo apt-get install dnsmasq
 ```
 
 #### Setup
 
+Config your upstream dns
 ```shell
+echo "nameserver 1.1.1.1" | sudo tee /etc/resolv.dnsmaq
+echo "nameserver 8.8.8.8" | sudo tee -a /etc/resolv.dnsmaq
+```
 
+Config your `dnsmasq.conf` file. Use a cache-size parameter:
+```shell
+tee /etc/dnsmasq.conf << EOF
+listen-address=127.0.0.1
+resolv-file=/etc/resolv.dnsmasq
+cache-size=2048
+EOF
+```
+
+Use the dnsmasq as main dns provider
+```
+echo "nameserver 127.0.0.1" | sudo tee /etc/resolv.conf
+```
+
+Restart dnsmasq service
+```shell
+systemctl restart dnsmasq
+systemctl enable dnsmasq
+```
+
+## Test
+
+You should get `0 msec` in the next query.
+
+```shell
+✔ 12:40:44 [x420ua] ~ $ dig www.google.com | grep "Query time"
+;; Query time: 0 msec
+✔ 12:40:45 [x420ua] ~ $
 ```
