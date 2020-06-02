@@ -10,13 +10,13 @@ tags:
 
 ## Intro 
 
-My company use the Palo Alto Networks appliance in order to offer a VPN service for us. Normally, I use openconnect or openvpn client when I need to setup some VPN connection, but it doesn't work with Palo Alto devices. Openconnect client can't implement the gloabl protect protocol, at least not now.
+My company use the Palo Alto Networks appliance in order to offer a VPN service for us. Normally, I use openconnect or openvpn client when I needed to setup some VPN connection, but these clients don't work with Palo Alto devices. Openconnect client can't implement the gloabl protect protocol, at least not now.
 
-By default, the OpenVpn can not implement the global protect protocol and it is necessary to build from scratch using the code [source](https://github.com/dlenski/openconnect/tree/globalprotect)
+By default, the OpenVpn can not implement the global protect protocol and it is necessary to build from scratch from the code [source](https://github.com/dlenski/openconnect/tree/globalprotect)
 
 ## Build your openconnect to use Global Protect Protocol
 
-The prerequisites is to install the libraries and packages needed to compile successfully the openconnect.
+The prerequisites are install libraries and packages needed to compile it.
 
 For Fedora users the packages needed are:
 
@@ -42,7 +42,7 @@ sudo apt-get install \
   libgnutls28-dev
 ```
 
-Then, you need to download the git repository and make it:
+Finished the prerequisites steps, you need to download the git repository and compile the package using the branch `globalprotect`:
 
 ```shell
 git clone https://github.com/dlenski/openconnect.git
@@ -116,5 +116,5 @@ mycomapny-vpn.sh disconnect
 
 ## References:
 
-* [Here](https://serverfault.com/questions/584163/supplying-password-to-openconnect-started-via-start-stop-daemon) you have some ideas to create a init script.
+* https://serverfault.com/questions/584163/supplying-password-to-openconnect-started-via-start-stop-daemon. Here you will get more ideas to create an init script.
 
