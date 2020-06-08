@@ -1,5 +1,6 @@
 ---
 title: Create a simple spring boot application using gradle
+date: 2020-06-08
 description: Gradle is a nice tool to create a java application. You don't need to use a IDE software in order to create a simple hello world program.
 tags:
   - spring-boot
@@ -170,12 +171,37 @@ public class AppTest {
 }
 ```
 
-Define the main class name for the spring boot jar file. 
-
-build.gradle
+Define the main class name for the spring boot jar file. In your `build.gradle` file add this block
 
 ```java
+application {
+   mainClassName = 'hello.App'
+}
+
 bootJar {
     mainClassName = 'hello.App'
 }
 ```
+
+At this point, you could build and run the spring boot application
+
+```shell
+./gradlew bootJar
+```
+Or using the jar file
+```shell
+java -jar ./build/libs/spring-hello-world.jar
+```
+Another way to run the Application is by executing the following Gradle command:
+```shell
+./gradlew bootRun
+```
+
+Sample:
+
+[![asciicast](https://asciinema.org/a/dWeIbajqy3an00eRqXfpuqslW.svg)](https://asciinema.org/a/dWeIbajqy3an00eRqXfpuqslW)
+
+## References
+
+https://guides.gradle.org/building-spring-boot-2-projects-with-gradle/#creating_a_hello_gradle_sample_application
+
