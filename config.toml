@@ -9,8 +9,8 @@ publishDir = "docs"
 disqusShortname = "jenciso-github-io" # Enable comments by entering your Disqus shortname
 googleAnalytics = "UA-106539950-1" # Enable Google Analytics by entering your tracking id
 pygmentsCodeFences = true
-pygmentsCodefencesGuessSyntax=true 
-pygmentsStyle = "monokai"
+pygmentsCodefencesGuessSyntax=true
+pygmentsUseClasses=true 
 
 [params]
   logo = "/images/logo.png"
