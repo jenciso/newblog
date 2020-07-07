@@ -2,6 +2,7 @@
 title: Create a simple spring boot application using gradle
 date: 2020-06-08
 description: Gradle is a nice tool to create a java application. You don't need to use a IDE software in order to create a simple hello world program.
+comments: true
 tags:
   - spring-boot
   - gradle
