@@ -11,17 +11,17 @@ tags:
 
 ## Intro
 
-If you want to create a simple spring boot application likes a hello-world program, you don't need to use a IDE software for it. Gradle website has a simple tutorial that inspire me to writte this post.
+To create a simple spring boot application as a classic Hello World!", you don't need to use an IDE for it. Luckily, Gradle website show you a [simple tutorial] and I will show you how to do that.
 
-## Steps
+## Coding
 
-Initialize your project and choose the default options:
+Initialize your project:
 
 ```shell
 gradle init --type java-application
 ```
 
-The generated project will has the following structure
+It generates these files, pay attention to the directory structure.
 
 ```shell
 $ tree spring-hello-world/
@@ -50,10 +50,9 @@ spring-hello-world/
         │               └── AppTest.java
         └── resources
 
-15 directories, 8 files
 ```
 
-You need to modify the `build.gradle` file to use the spring boot plugins needed.
+To use the spring boot plugins you need to modify the `build.gradle`
 
 ```java
 plugins {
@@ -184,7 +183,7 @@ bootJar {
 }
 ```
 
-At this point, you could build and run the spring boot application
+At this point, you could build and run the application
 
 ```shell
 ./gradlew bootJar
@@ -202,7 +201,5 @@ Sample:
 
 [![asciicast](https://asciinema.org/a/dWeIbajqy3an00eRqXfpuqslW.svg)](https://asciinema.org/a/dWeIbajqy3an00eRqXfpuqslW)
 
-## References
-
-https://guides.gradle.org/building-spring-boot-2-projects-with-gradle/#creating_a_hello_gradle_sample_application
+[simple tutorial]: https://guides.gradle.org/building-spring-boot-2-projects-with-gradle/#creating_a_hello_gradle_sample_application
 
