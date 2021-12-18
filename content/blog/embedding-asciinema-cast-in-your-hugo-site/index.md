@@ -29,14 +29,15 @@ I will show you how to setup you hugo to use asciinema. Follow these steps to ac
 
 Using wget:
 
-```sh
-wget https://github.com/asciinema/asciinema-player/releases/download/v2.6.1/asciinema-player.css
-wget https://github.com/asciinema/asciinema-player/releases/download/v2.6.1/asciinema-player.js
+```bash
+BASE_URL=https://github.com/asciinema/asciinema-player/releases/download
+wget $BASE_URL/v2.6.1/asciinema-player.css
+wget $BASE_URL/v2.6.1/asciinema-player.js
 ```
 
 Put these files into `static/css` and `static/js` folders. Like this:
 
-```sh
+```console
 $ ls -l static/css/asciinema-player.css 
 -rw-rw-r-- 1 jenciso jenciso 50722 Fev 21  2018 static/css/asciinema-player.css
 $ ls -l static/js/asciinema-player.js 
@@ -116,9 +117,7 @@ tags:
 
 Finally, the result should show something like this:
 
-```shell
 {{< asciinema key="249623" cols="158" rows="40" preload="1" speed="1" >}}
-```
 
 #### References 
 

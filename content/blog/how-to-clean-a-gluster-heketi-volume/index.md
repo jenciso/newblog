@@ -9,11 +9,12 @@ tags:
   - storage
 ---
 
-Currently, I'm using [gluster + heketi](https://github.com/gluster/gluster-kubernetes) in my kubernetes cluster to give a persistent storage service on demand. I know that there are other options to implement simliar service, like a rooks using ceph. But, at the moment, gluster and heketi attend me very well.
+I'm using [gluster + heketi](https://github.com/gluster/gluster-kubernetes) in my current kubernetes cluster, with it I give a persistent storage service on demand, it is easy to use, robust and simple. I know others options to implement a simliar service, like a [rooks](https://rook.io) using ceph, however, gluster and heketi support my cluster very well.
 
-One problem that I found with this approach is to do one operational task. It is to cleanup some volumes via heketi. So, from time to time I need to clean up my gluster volumes because for some reason, I don't know, the heketi volumes don't represent the same size compared with the gluster bricks. It is an inconsistency issue.
+One little problem with this approach is to do some operational tasks. For instance, it is needed to cleanup some volumes via heketi CLI. So, from time to time I need to do in my gluster volumes because for some reason, heketi volumes don't represent the same size when I compared with the gluster bricks sizes. It represent an inconsistency issue.
 
-In the following lines I show you how to clean up the heketi information to sincronize with the gluster bricks information
+I'll show you how to clean up the heketi information to sincronize with gluster bricks information.
+
 
 ### Deleting the orphands bricks
 
@@ -23,24 +24,27 @@ Some bricks haven't the path correctly. So, you need to clean up using the `heke
 
 Scale down your heketi service
 
-```shell
+```bash
 kubectl scale deployment -n gluster-heketi heketi --replicas=0
 ```
 
 Find out your `heketidbstorage` mount point 
-```shell
+
+```bash
 kubectl exec -it -n gluster-heketi heketi-5c88f4574d-jxkpl -- df -k
 ``` 
 
 Mount the gluster volume of `heketi.db`
-```shell
+
+```sh
 sudo apt-get -y install glusterfs-client
 sudo mount -t glusterfs 10.64.14.47:/heketidbstorage  /mnt
 ``` 
 > `10.64.14.47` is one of my gluster servers
 
 Download the heketi binary
-```shell
+
+```sh
 wget https://github.com/heketi/heketi/releases/download/v9.0.0/heketi-v9.0.0.linux.amd64.tar.gz
 cd heketi
 sudo ./heketi db delete-bricks-with-empty-path --dbfile=/mnt/heketi.db --all
@@ -48,7 +52,8 @@ umount /mnt
 ```
 
 Scale up your heketi service
-```shell
+
+```sh
 kubectl scale deployment -n gluster-heketi heketi --replicas=1
 ```
 
