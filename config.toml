@@ -1,4 +1,4 @@
-baseURL = "https://jenciso.github.io/"
+baseURL = "https://jenciso.github.io"
 languageCode = "en-us"
 title = "Tech-Blog"
 theme = "mediumish"
@@ -14,8 +14,8 @@ pygmentsUseClasses=true
 
 [params]
   logo = "/images/logo.png"
-  description = "Sharing some technical experiences."
-  mailchimp = "https://gmail.us20.list-manage.com/subscribe/post?u=fcd0d13593259ece3901cc6b1&amp;id=658aa507ab"
+  description = "Sharing my tech stories"
+  #mailchimp = "https://gmail.us20.list-manage.com/subscribe/post?u=fcd0d13593259ece3901cc6b1&amp;id=658aa507ab"
   asciinema = false
   copy2clipboard = false
 
@@ -27,11 +27,11 @@ pygmentsUseClasses=true
 [params.index]
   picture = "/images/author.png"
   title = "Juan Enciso"
-  subtitle = "IT Infraestructure Architect | SRE Engineer | Devops Technical Trainer"
+  subtitle = "IT Architect | SRE Leader Engineer | Devops Technical Trainer"
   mdtext = '''
-Love building distributed systems, writing in bash and python, building CLI dev tools,\
-building platform, engaging with other engineering teams, and learning new things\
-###### **Open Source, Technical Leadership, Automation, People**\
+Love building distributed systems, writing code in bash, python, and go,
+engaging share colaboration culture and learning new things
+###### **Open Source, Technical Leadership, Automation, People**
 '''
   alertbar = true
 

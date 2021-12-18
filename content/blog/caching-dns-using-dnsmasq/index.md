@@ -8,19 +8,15 @@ tags:
   - networkmanager
 ---
 
-## Intro
+## Overview 
 
-In pandemic times, remote work increased VPN use in employees that need to consume internal services hosted in companies on-premise environment.
+Work remotely was increased since covid-19 appears in the world. Some networks devices as VPN appliances are working a lot and employees are using more than never internal services through VPN connections. Your VPN connection often requires setup the DNS server of your company in order to resolve all hostnames of the internal company services.
 
-Normally, this VPN connection will be use the DNS server of your company in order to resolve all DNS names of your company and outside internet urls.
+So, each dns request use the same VPN network and these UDP packets are encrypt and transmit using your Internet. This process will repeat for each simple dns record. So, all this round trip create an unnecessary communication overhead. To cache theses dns requests is a good alternative to diminish your network latency and speed up your internet browsing.
 
-Each request to your DNS company will be use the same VPN network. Obviously, all the UDP packets will be encrypted and transmited using your Internet network. This process will repeat for each simple dns record. So, all this round trip create an unnecessary overhead in your communication.
+## Installing a Dnsmaq service Hero
 
-Caching theses dns requests would be a good alternative to diminish your network latency and speed up your internet browsing.
-
-## Install Dnsmasq 
-
-### Prerequisites
+> For ubuntu 
 
 Uninstall `systemd-resolved` package. It isn't necessary to have.
 
@@ -50,15 +46,12 @@ Restart NetworkManager
 sudo systemctl restart NetworkManager
 ```
 
-###  Install dnsmasq
+###  Install
 
-Remove the current `/etc/resolvconf` file
+Remove the current `/etc/resolvconf` file and install dnsmasq
+
 ```shell
 unlink /etc/resolv.conf
-```
-
-Install dnsmasq
-```shell
 sudo apt-get install dnsmasq
 ```
 
