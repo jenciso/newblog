@@ -9,11 +9,10 @@ tags:
   - java
 ---
 
-## Intro
 
 To create a simple spring boot application as a classic Hello World!", you don't need to use an IDE for it. Luckily, Gradle website explain to you how to do this via a [simple tutorial]. I will try to sumarize it.
 
-## Get Started
+## Getting Started
 
 Initialize your project:
 
@@ -53,6 +52,7 @@ spring-hello-world/
 ```
 
 To use the spring boot plugins you need to modify the `build.gradle`
+
 
 ```java
 plugins {

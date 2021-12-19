@@ -8,9 +8,14 @@ enableEmoji = true
 publishDir = "docs"
 disqusShortname = "jenciso-github-io" # Enable comments by entering your Disqus shortname
 googleAnalytics = "UA-106539950-1" # Enable Google Analytics by entering your tracking id
-pygmentsCodeFences = true
-pygmentsCodefencesGuessSyntax=true
-pygmentsUseClasses=true 
+pygmentsCodeFences = false 
+pygmentsCodefencesGuessSyntax = false
+pygmentsUseClasses = false
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
 
 [params]
   logo = "/images/logo.png"

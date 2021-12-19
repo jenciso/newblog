@@ -200,9 +200,7 @@ rm -rf /tmp/tutorial
 
 ## Demo
 
-```shell
 {{< asciinema key="294493" cols="127" rows="33" preload="1" speed="2" >}}
-```
 
 ## References
 
