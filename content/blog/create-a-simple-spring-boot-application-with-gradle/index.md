@@ -16,13 +16,13 @@ To create a simple spring boot application as a classic Hello World!", you don't
 
 Initialize your project:
 
-```shell
+```
 gradle init --type java-application
 ```
 
 It generates these files, pay attention to the directory structure.
 
-```shell
+```
 $ tree spring-hello-world/
 spring-hello-world/
 ├── build.gradle
@@ -51,44 +51,9 @@ spring-hello-world/
 
 ```
 
-To use the spring boot plugins you need to modify the `build.gradle`
+Modify the `build.gradle` file adding the plugin and dependencies block
 
-
-```java
-plugins {
-    // Apply the java plugin to add support for Java
-    id 'java'
-
-    // Apply the application plugin to add support for building a CLI application.
-    id 'application'
-
-    // Spring Boot plugins
-    id 'org.springframework.boot' version '2.0.5.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.7.RELEASE'
-}
-```
-
-Define the dependencies
-
-```java
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-dependencies:2.0.5.RELEASE'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
-    components {
-        withModule('org.springframework:spring-beans') {
-            allVariants {
-                withDependencyConstraints {
-                    // Need to patch constraints because snakeyaml is an optional dependency
-                    it.findAll { it.name == 'snakeyaml' }.each { it.version { strictly '1.19' } }
-                }
-            }
-        }
-    }
-}
-```
+<script src="https://gist.github.com/jenciso/dcfbcc301e173d86afbd128e7b8d13c1.js"></script>
 
 Creating a "Hello World" sample application
 
@@ -96,80 +61,15 @@ Creating a "Hello World" sample application
 mkdir src/{main,test}/java/hello
 ```
 
-Within `src/main/java/hello` directory, create these two files:
+Into `src/main/java/hello` dir add two files: `App.java` and `HelloGradleController.java`
 
-App.java
-
-```java
-package hello;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-@SpringBootApplication
-public class App {
-
-    public static void main(String[] args) {
-        SpringApplication.run(App.class, args);
-    }
-
-}
-```
-
-HelloGradleController.java
-
-```java
-package hello;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController("/")
-public class HelloGradleController {
-
-    @GetMapping
-    public String helloGradle() {
-        return "Hello Gradle!";
-    }
-
-}
-```
+<script src="https://gist.github.com/jenciso/3ddb83aa76ac337310b0a9253ccd273e.js"></script>
 
 And within the `src/test/java/hello` create this file:
 
 AppTest.java
-```java
-package hello;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = App.class)
-@AutoConfigureMockMvc
-public class AppTest {
-
-    @Autowired
-    private MockMvc mvc;
-
-    @Test
-    public void helloGradle() throws Exception {
-        mvc.perform(get("/"))
-            .andExpect(status().isOk())
-            .andExpect(content().string("Hello Gradle!"));
-    }
-
-}
-```
+<script src="https://gist.github.com/jenciso/ae8af51e37e62f46703d5944f59c9c10.js"></script>
 
 Define the main class name for the spring boot jar file. In your `build.gradle` file add this block
 
@@ -185,15 +85,15 @@ bootJar {
 
 At this point, you could build and run the application
 
-```shell
+```
 ./gradlew bootJar
 ```
 Or using the jar file
-```shell
+```
 java -jar ./build/libs/spring-hello-world.jar
 ```
 Another way to run the Application is by executing the following Gradle command:
-```shell
+```
 ./gradlew bootRun
 ```
 

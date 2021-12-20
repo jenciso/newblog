@@ -28,7 +28,7 @@ sudo apt-get remove systemd-resolved
 
 Disabled `dnsmasq` in the NetworkManager configuration. Ensure to have the `dns=none` line
 
-```
+```ini
 [main]
 dns=none
 plugins=ifupdown,keyfile

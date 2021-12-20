@@ -16,6 +16,8 @@
                 <!-- Post -->                
                 <div class="col-md-9 flex-first flex-md-unordered">
                     <div class="mainheading">
+                        <!-- Post Title -->
+                        <h1 class="posttitle">{{ .Title }}</h1>
                         <!-- Author Box -->	
                         {{if isset .Site.Params.author "name"}}
                         {{if isset .Site.Params.author "thumbnail"}}
@@ -38,8 +40,6 @@
                         {{end}}	
                         {{end}}
                         {{end}}                        
-                        <!-- Post Title -->
-                        <h1 class="posttitle">{{ .Title }}</h1> 
                     </div>
 
                     <!-- Post Featured Image -->
