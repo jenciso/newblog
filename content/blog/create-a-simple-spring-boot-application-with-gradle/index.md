@@ -9,18 +9,19 @@ tags:
   - java
 ---
 
+## Overview 
 
-To create a simple spring boot application as a classic Hello World!", you don't need to use an IDE for it. Luckily, Gradle website explain to you how to do this via a [simple tutorial]. I will try to sumarize it.
+To create a simple spring boot application, as the very famous example "Hello World!", you don't need to use an IDE software. Fortunately, you can use only gradle CLI, and the Gradle website explains how to do this via its [simple tutorial]. I will try to sumarize it in this article
 
 ## Getting Started
 
-Initialize your project:
+Initialize your project via `gradle`
 
 ```
 gradle init --type java-application
 ```
 
-It generates these files, pay attention to the directory structure.
+It will create this directory structure adding some files
 
 ```
 $ tree spring-hello-world/
