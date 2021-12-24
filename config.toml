@@ -18,7 +18,7 @@ pygmentsUseClasses = false
       unsafe = true
 
 [params]
-  logo = "/images/logo-verde.png"
+  logo = "/images/icon_cmd.png"
   description = "Sharing my tech stories"
   #mailchimp = "https://gmail.us20.list-manage.com/subscribe/post?u=fcd0d13593259ece3901cc6b1&amp;id=658aa507ab"
   asciinema = false
