@@ -20,7 +20,7 @@ The prerequisites are install libraries and packages needed to compile it.
 
 For Fedora users the packages needed are:
 
-```shell
+```console
 sudo dnf -f install libxml2-devel \
   zlib-devel \
   openssl-devel \

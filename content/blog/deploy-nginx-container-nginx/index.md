@@ -21,7 +21,7 @@ Some terms of use are explained below:
 
 ### Define a provider to use
 
-```shell
+```bash
 cat > config.tf << EOF
 provider "docker" {
   host = "unix:///var/run/docker.sock"
@@ -38,7 +38,7 @@ One first resource is our docker image. A resource has two parameters:
 
 > In our case, type is `docker_image` and name as `nginx`. 
 
-```shell
+```bash
 cat >> config.tf << EOF
 resource "docker_image" "nginx" {
   name = "nginx:1.11-alpine"
@@ -48,7 +48,7 @@ EOF
 
 Other resource type is `docker_container` name as `nginx-server`. Within the block we set the resource parameters. We can reference other resources, such as a the `image`.
 
-```shell
+```bash
 cat >> config.tf << EOF
 resource "docker_container" "nginx-server" {
   name = "nginx-server-1"
@@ -74,13 +74,13 @@ Terraform describes the actions required to achieve the desired state. We have "
 
 Initializing our project 
 
-```shell
+```sh
 terraform init
 ```
 
 And then, we plan our state desired
 
-```shell
+```sh
 terraform plan -out config.tfplan
 ```
 
@@ -89,7 +89,7 @@ terraform plan -out config.tfplan
 
 To create some data for our containers, we added some content:
 
-```shell
+```console
 mkdir -p /tmp/tutorial/www
 echo "<h1>hello world</h1>" > /tmp/tutorial/www/index.html
 ```
