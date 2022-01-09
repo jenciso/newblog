@@ -4,6 +4,7 @@ description: Multiples ways to say Hello World with Ruby on Rails
 published: true
 comments: true
 date: 2022-01-08
+asciinema: true
 tags:
   - ruby
 ---
@@ -146,7 +147,7 @@ Test it via curl
 ```
 curl -vs http://localhost:4567/hi
 ```
-## As a Container Application
+### As a Container Application
 
 Create a `Dockerfile`:
 
@@ -205,3 +206,9 @@ class App < Sinatra::Base
  
 end
 ```
+
+> The source code is [here](https://github.com/jenciso/ruby-helloworld)
+
+## Demo
+
+{{< asciinema key="460847" cols="158" rows="30" preload="1" speed="2" >}}
