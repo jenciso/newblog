@@ -155,8 +155,9 @@ You need to create 3 files for your application:
 - config.ru
 - app.rb
 
-And in addition, you have to create a `Dockerfile`. I uploaded this file in this git repository: https://github.com/jenciso/ruby-helloworld
+And in addition, you have to create a `Dockerfile`. I uploaded those files in this git repository: https://github.com/jenciso/ruby-helloworld
 
+You only need to follow the instructions written on the [README.md](https://github.com/jenciso/ruby-helloworld)
 
 <script src="https://gist.github.com/jenciso/8c9b69ed1cf99d9c8ce1cd88ccf4431b.js"></script>
 
