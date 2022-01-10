@@ -149,66 +149,18 @@ curl -vs http://localhost:4567/hi
 ```
 ### As a Container Application
 
-Create a `Dockerfile`:
+You need to create 3 files for your application:
 
-```
-FROM ruby:alpine
+- Gemfile
+- config.ru
+- app.rb
 
-RUN apk add build-base && \
-    rm -rf /var/cache/apk/*
-
-RUN mkdir /app
-COPY . /app/
-
-WORKDIR /app
-RUN bundle install
-
-CMD ["puma","-b","tcp://0.0.0.0:4567"]  
-```
-
-Add a `Gemfile`, `config.ru` and `app.rb`
-
-```ruby
-source "https://rubygems.org"
-
-gem 'sinatra'
-gem 'puma'
-```
-
-```ruby
-require_relative './app.rb'      
-                                 
-run App                          
-```
-
-```ruby
-require 'sinatra'
-require 'puma'
-
-configure {                      
-  set :server, :puma             
-}                                
-                                 
-class App < Sinatra::Base
-
-  get '/' do
-    "Hello World with Ruby!"
-  end
-
-  get '/hi' do
-    "Hi!"
-  end
+And in addition, you have to create a `Dockerfile`. I uploaded this file in this git repository: https://github.com/jenciso/ruby-helloworld
 
 
-  get '/health' do                         
-    "Im Alive, TimeStamp: #{Time.now}"     
-  end                                      
- 
-end
-```
+<script src="https://gist.github.com/jenciso/8c9b69ed1cf99d9c8ce1cd88ccf4431b.js"></script>
 
-> The source code is [here](https://github.com/jenciso/ruby-helloworld)
 
 ## Demo
 
-{{< asciinema key="460847" cols="158" rows="30" preload="1" speed="2" >}}
+{{< asciinema key="460847" cols="158" rows="30" preload="1" speed="1" >}}
