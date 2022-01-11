@@ -23,8 +23,8 @@ One of the first things you need to do when you are learning a programming langu
 
 For Ubuntu users I will install Ruby on Rails using this steps found out [here](https://gorails.com/setup/ubuntu/20.04)
 
-```shell
-sudo apt install curl
+<pre class="command-line" data-prompt="$">
+<code class="language-shell">sudo apt install curl
 curl -sL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | \
   sudo apt-key add -
@@ -35,15 +35,14 @@ sudo apt-get update
 sudo apt-get install git-core zlib1g-dev build-essential libssl-dev \
   libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev \
   libxslt1-dev libcurl4-openssl-dev software-properties-common libffi-dev \
-  nodejs yarn
-```
+  nodejs yarn</code>
+</pre>
 
 Next we're going to be installing Ruby using a version manager called Rbenv.
 
 Installing with rbenv is a simple two step process. First you install rbenv, and then ruby-build:
 
-```bash
-cd
+<pre class="command-line" data-prompt="$"><code class="language-bash">cd
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(rbenv init -)"' >> ~/.bashrc
@@ -51,25 +50,24 @@ exec $SHELL
 
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bashrc
-exec $SHELL
-```
+exec $SHELL</code></pre>
 
 To install Ruby and set the default version, we'll run the following commands:
 
-```shell
-rbenv install 3.0.3
+<pre class="command-line" data-prompt="$"><code class="language-bash">rbenv install 3.0.3
 rbenv global 3.0.3
 ruby -v
-gem install bundler
-```
+gem install bundler</code>
+</pre>
 
 ### Installing Rails
 
-```shell
-gem install rails -v 7.0.0
+<pre class="command-line" data-prompt="$"><code class="language-bash">gem install rails -v 7.0.0
 rbenv rehash
-rails -v
-```
+rails -v</code></pre>
+
+
+
 ## Say Hello World!
 
 ### Using one command line
@@ -94,8 +92,8 @@ Hello world
 
 Create a file called `hi.rb` with the following content:
 
-```ruby
-class HelloWorld
+<pre class="line-numbers" style="white-space: pre-wrap;">
+<code class="language-ruby">class HelloWorld
    def initialize(name)
       @name = name.capitalize
    end
@@ -106,7 +104,8 @@ end
 
 hello = HelloWorld.new("World")
 hello.sayHi
-```
+</code>
+</pre>
 
 ### Using Sinatra and puma
 
@@ -117,14 +116,15 @@ gem install puma
 ```
 Then, create a file called `hi.rb`
 
-```ruby
-require 'sinatra'
+<pre class="line-numbers">
+<code class="language-ruby">require 'sinatra'
 require 'puma'
 
 get '/hi' do
   "Hello World!"
 end
-```
+</code>
+</pre>
 
 And run it `ruby hi.rb`. You will see this result:
 
@@ -144,7 +144,7 @@ Use Ctrl-C to stop
 
 Test it via curl
 
-```
+```shell
 curl -vs http://localhost:4567/hi
 ```
 ### As a Container Application
@@ -161,62 +161,28 @@ You only need to follow the instructions written on the [README.md](https://gith
 
 * Dockerfile
 
-```Dockerfile
-FROM ruby:alpine
-
-RUN apk add build-base && \
-    rm -rf /var/cache/apk/*
-
-RUN mkdir /app
-COPY . /app/
-
-WORKDIR /app
-RUN bundle install
-
-CMD ["puma","-b","tcp://0.0.0.0:4567"]
-```
+<code>
+<script src="https://emgithub.com/embed.js?target=https%3A%2F%2Fgithub.com%2Fjenciso%2Fruby-helloworld%2Fblob%2Fmaster%2FDockerfile&style=default&showBorder=on&showLineNumbers=on&showFileMeta=on"></script>
+</code>
 
 * Gemfile
-```ruby
-source "https://rubygems.org"
 
-gem 'sinatra'
-gem 'puma'
-```
+<code>
+<script src="https://emgithub.com/embed.js?target=https%3A%2F%2Fgithub.com%2Fjenciso%2Fruby-helloworld%2Fblob%2Fmaster%2FGemfile&style=default&showBorder=on&showLineNumbers=on&showFileMeta=on"></script>
+</code>
 
 * config.ru
 
-```ruby
-require_relative './app.rb'
-run App
-```
+<code>
+<script src="https://emgithub.com/embed.js?target=https%3A%2F%2Fgithub.com%2Fjenciso%2Fruby-helloworld%2Fblob%2Fmaster%2Fconfig.ru&style=default&showBorder=on&showLineNumbers=on&showFileMeta=on"></script>
+
+</code>
 
 * app.ru
 
-```ruby
-require 'sinatra'
-require 'puma'
-
-configure {                      
-  set :server, :puma             
-}                                
-                                 
-class App < Sinatra::Base
-
-  get '/' do
-    "Hello World with Ruby!"
-  end
-
-  get '/hi' do
-    "Hi!"
-  end
-
-  get '/health' do                         
-    "Im Alive, TimeStamp: #{Time.now}"     
-  end                                      
-
-end
-```
+<code>
+<script src="https://emgithub.com/embed.js?target=https%3A%2F%2Fgithub.com%2Fjenciso%2Fruby-helloworld%2Fblob%2Fmaster%2Fapp.rb&style=xcode&showBorder=on&showLineNumbers=on&showFileMeta=on"></script>
+</code>
 
 ## Demo
 
