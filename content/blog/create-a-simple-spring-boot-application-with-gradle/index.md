@@ -17,13 +17,13 @@ To create a simple spring boot application, as the very famous example "Hello Wo
 
 Initialize your project via `gradle`
 
-```
+```shell
 gradle init --type java-application
 ```
 
 It will create this directory structure adding some files
 
-```
+```shell
 $ tree spring-hello-world/
 spring-hello-world/
 ├── build.gradle
@@ -86,15 +86,15 @@ bootJar {
 
 At this point, you could build and run the application
 
-```
+```shell
 ./gradlew bootJar
 ```
 Or using the jar file
-```
+```shell
 java -jar ./build/libs/spring-hello-world.jar
 ```
 Another way to run the Application is by executing the following Gradle command:
-```
+```shell
 ./gradlew bootRun
 ```
 
