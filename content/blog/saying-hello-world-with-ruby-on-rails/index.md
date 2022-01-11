@@ -163,39 +163,28 @@ Test it via curl
 curl -vs http://localhost:4567/hi
 ```
 
-### As a Container Application
+### Use a container application
 
-You need to create 3 files for your application:
+To containerize my "hello world" application, I created 3 files in addition to `Dockerfile` needed. Those files are:
 
 - Gemfile
 - config.ru
 - app.rb
 
-And in addition, you have to create a `Dockerfile`. I uploaded those files in this git repository: https://github.com/jenciso/ruby-helloworld
+I uploaded those in this git repository: https://github.com/jenciso/ruby-helloworld. You only need to follow the instructions written on the [README.md](https://github.com/jenciso/ruby-helloworld)
 
-You only need to follow the instructions written on the [README.md](https://github.com/jenciso/ruby-helloworld)
-
-* Dockerfile
 
 <code>
 <script src="https://emgithub.com/embed.js?target=https%3A%2F%2Fgithub.com%2Fjenciso%2Fruby-helloworld%2Fblob%2Fmaster%2FDockerfile&style=default&showBorder=on&showLineNumbers=on&showFileMeta=on"></script>
 </code>
 
-* Gemfile
-
 <code>
 <script src="https://emgithub.com/embed.js?target=https%3A%2F%2Fgithub.com%2Fjenciso%2Fruby-helloworld%2Fblob%2Fmaster%2FGemfile&style=default&showBorder=on&showLineNumbers=on&showFileMeta=on"></script>
 </code>
 
-* config.ru
-
 <code>
 <script src="https://emgithub.com/embed.js?target=https%3A%2F%2Fgithub.com%2Fjenciso%2Fruby-helloworld%2Fblob%2Fmaster%2Fconfig.ru&style=default&showBorder=on&showLineNumbers=on&showFileMeta=on"></script>
-
 </code>
-
-* app.ru
-
 <code>
 <script src="https://emgithub.com/embed.js?target=https%3A%2F%2Fgithub.com%2Fjenciso%2Fruby-helloworld%2Fblob%2Fmaster%2Fapp.rb&style=xcode&showBorder=on&showLineNumbers=on&showFileMeta=on"></script>
 </code>
