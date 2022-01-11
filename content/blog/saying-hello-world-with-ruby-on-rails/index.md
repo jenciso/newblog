@@ -24,7 +24,8 @@ One of the first things you need to do when you are learning a programming langu
 For Ubuntu users I will install Ruby on Rails using this steps found out [here](https://gorails.com/setup/ubuntu/20.04)
 
 <pre class="command-line" data-prompt="$">
-<code class="language-shell">sudo apt install curl
+<code class="language-shell">
+sudo apt install curl
 curl -sL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | \
   sudo apt-key add -
@@ -35,14 +36,16 @@ sudo apt-get update
 sudo apt-get install git-core zlib1g-dev build-essential libssl-dev \
   libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev \
   libxslt1-dev libcurl4-openssl-dev software-properties-common libffi-dev \
-  nodejs yarn</code>
+  nodejs yarn
+</code>
 </pre>
 
 Next we're going to be installing Ruby using a version manager called Rbenv.
 
 Installing with rbenv is a simple two step process. First you install rbenv, and then ruby-build:
 
-<pre class="command-line" data-prompt="$"><code class="language-bash">cd
+<pre class="command-line" data-prompt="$"><code class="language-bash">
+cd
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(rbenv init -)"' >> ~/.bashrc
@@ -50,21 +53,26 @@ exec $SHELL
 
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bashrc
-exec $SHELL</code></pre>
+exec $SHELL
+</code></pre>
 
 To install Ruby and set the default version, we'll run the following commands:
 
-<pre class="command-line" data-prompt="$"><code class="language-bash">rbenv install 3.0.3
+<pre class="command-line" data-prompt="$"><code class="language-bash">
+rbenv install 3.0.3
 rbenv global 3.0.3
 ruby -v
-gem install bundler</code>
+gem install bundler
+</code>
 </pre>
 
 ### Installing Rails
 
-<pre class="command-line" data-prompt="$"><code class="language-bash">gem install rails -v 7.0.0
+<pre class="command-line" data-prompt="$"><code class="language-bash">
+gem install rails -v 7.0.0
 rbenv rehash
-rails -v</code></pre>
+rails -v
+</code></pre>
 
 
 
@@ -93,7 +101,8 @@ Hello world
 Create a file called `hi.rb` with the following content:
 
 <pre class="line-numbers" style="white-space: pre-wrap;">
-<code class="language-ruby">class HelloWorld
+<code class="language-ruby">
+class HelloWorld
    def initialize(name)
       @name = name.capitalize
    end
@@ -110,14 +119,18 @@ hello.sayHi
 ### Using Sinatra and puma
 
 To run a hellow world as a webserver require use this following gems:
-```shell
+
+<pre class="command-line" data-prompt="$"><code class="language-bash">
 gem install sinatra
 gem install puma
-```
+</code></pre>
+
+
 Then, create a file called `hi.rb`
 
 <pre class="line-numbers">
-<code class="language-ruby">require 'sinatra'
+<code class="language-ruby">
+require 'sinatra'
 require 'puma'
 
 get '/hi' do
@@ -128,18 +141,20 @@ end
 
 And run it `ruby hi.rb`. You will see this result:
 
-```shell
-== Sinatra (v2.1.0) has taken the stage on 4567 for development with backup from Puma
-Puma starting in single mode...
-* Puma version: 5.5.2 (ruby 3.0.3-p157) ("Zawgyi")
-*  Min threads: 0
-*  Max threads: 5
-*  Environment: development
-*          PID: 51949
-* Listening on http://127.0.0.1:4567
-* Listening on http://[::1]:4567
-Use Ctrl-C to stop
-```
+<pre class="command-line" data-prompt="$" data-filter-output="(out)"><code class="language-bash">
+ruby hi.rb
+(out) == Sinatra (v2.1.0) has taken the stage on 4567 for development with backup from Puma
+(out) Puma starting in single mode...
+(out) * Puma version: 5.5.2 (ruby 3.0.3-p157) ("Zawgyi")
+(out) *  Min threads: 0
+(out) *  Max threads: 5
+(out) *  Environment: development
+(out) *          PID: 51949
+(out) * Listening on http://127.0.0.1:4567
+(out) * Listening on http://[::1]:4567
+(out) Use Ctrl-C to stop
+</code></pre>
+
 > Debug mode: `ruby --debug hi.rb`
 
 Test it via curl
@@ -147,6 +162,7 @@ Test it via curl
 ```shell
 curl -vs http://localhost:4567/hi
 ```
+
 ### As a Container Application
 
 You need to create 3 files for your application:
