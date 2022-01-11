@@ -159,8 +159,64 @@ And in addition, you have to create a `Dockerfile`. I uploaded those files in th
 
 You only need to follow the instructions written on the [README.md](https://github.com/jenciso/ruby-helloworld)
 
-<script src="https://gist.github.com/jenciso/8c9b69ed1cf99d9c8ce1cd88ccf4431b.js"></script>
+* Dockerfile
 
+```Dockerfile
+FROM ruby:alpine
+
+RUN apk add build-base && \
+    rm -rf /var/cache/apk/*
+
+RUN mkdir /app
+COPY . /app/
+
+WORKDIR /app
+RUN bundle install
+
+CMD ["puma","-b","tcp://0.0.0.0:4567"]
+```
+
+* Gemfile
+```ruby
+source "https://rubygems.org"
+
+gem 'sinatra'
+gem 'puma'
+```
+
+* config.ru
+
+```ruby
+require_relative './app.rb'
+run App
+```
+
+* app.ru
+
+```ruby
+require 'sinatra'
+require 'puma'
+
+configure {                      
+  set :server, :puma             
+}                                
+                                 
+class App < Sinatra::Base
+
+  get '/' do
+    "Hello World with Ruby!"
+  end
+
+  get '/hi' do
+    "Hi!"
+  end
+
+  get '/health' do                         
+    "Im Alive, TimeStamp: #{Time.now}"     
+  end                                      
+
+end
+```
 
 ## Demo
 
