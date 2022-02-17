@@ -1,16 +1,19 @@
 ---
-title: Using dnsmasq with networkManager in Ubuntu
+title: Using dnsmasq with networkManager in Ubuntu 20.04
 date: 2020-06-01
-description: How to configure dnsmasq into Ubuntu running networkManager
+description: How to run dnsmasq and networkManager in Ubuntu 20.04
 comments: true
 tags:
   - dnsmasq
   - networkmanager
+  - ubuntu
 ---
 
 ## Overview 
 
-Remote work increased since covid-19 appears. The VPN appliances turned crucial devices and employees are using more than ever their companies internal services. VPN connections often setting a custom DNS server, your internal DNS server, in order to resolve hostnames or services of the internal company.
+Remote work has been increased since covid-19. VPN appliances turned crucial devices and employees has been using more than ever their companies internal services. VPN often need to setup your DNS configuration in order to use the internal DNS server of the company, so you can resolve hostnames or services offer by your company.
+
+The Problem:
 
 Thus each dns request are going to use the same VPN network and these UDP packets are encrypt and transmit using your own Internet. This process will repeat for each simple dns record. So, all this round trip create an unnecessary communication overhead. To reduce this overhead, you could implement a dns cache of these requests as alternative to improve your network latency and speed up your internet browsing.
 
@@ -23,10 +26,9 @@ Uninstall `systemd-resolved` package. It isn't necessary to have.
 ```shell
 sudo systemctl disable systemd-resolved
 sudo systemctl stop systemd-resolved
-sudo apt-get remove systemd-resolved
 ```
 
-Disabled `dnsmasq` in the NetworkManager configuration. Ensure to have the `dns=none` line
+Disabled `dnsmasq` in the `/etc/NetworkManager/NetworkManager.conf`. Also, ensure to have the `dns=none` line
 
 ```ini
 [main]
@@ -57,8 +59,8 @@ sudo apt-get install dnsmasq
 
 Config your upstream dns
 ```shell
-echo "nameserver 1.1.1.1" | sudo tee /etc/resolv.dnsmaq
-echo "nameserver 8.8.8.8" | sudo tee -a /etc/resolv.dnsmaq
+echo "nameserver 1.1.1.1" | sudo tee /etc/resolv.dnsmasq
+echo "nameserver 8.8.8.8" | sudo tee -a /etc/resolv.dnsmasq
 ```
 
 Config your `dnsmasq.conf` file. Use a cache-size parameter:
