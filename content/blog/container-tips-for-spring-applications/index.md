@@ -1,7 +1,7 @@
 ---
 Title: Container Tips for Spring Applications
 description: Some tips relationed to create container for Spring applications
-published: true
+published: false
 comments: true
 date: 2022-01-25
 asciinema: true
