@@ -3,7 +3,7 @@ Title: Saying Hello World with Ruby On Rails
 description: Multiples ways to say Hello World with Ruby on Rails
 published: true
 comments: true
-date: {}
+date: 2022-01-08
 asciinema: true
 tags:
   - ruby
