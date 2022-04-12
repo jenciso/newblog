@@ -3,7 +3,7 @@ Title: Saying Hello World with Ruby On Rails
 description: Multiples ways to say Hello World with Ruby on Rails
 published: true
 comments: true
-date: 2022-01-08
+date: {}
 asciinema: true
 tags:
   - ruby
@@ -13,11 +13,13 @@ tags:
 
 ## Intro
 
-As a SRE engineer you have to approximate to the Developer Teams code language in order to understand how difficult it is to build and debug applications. Ruby is one of the most popular programming languages and if you want to getting started with Ruby, here I show you some steps to help you in this journey.
+As an SRE engineer, you have to approximate the Developer Teams talking in the same language. I mean their code language. So to understand and know how difficult it is to build and debug software applications, you need to code. 
+
+Ruby is one of the most popular programming languages, and if you want to get started with Ruby, here I show you some basic steps to help you in this journey.
 
 ## Getting Started with Ruby
 
-One of the first things you need to do when you are learning a programming language is to create a Hello World code. I will explain how to do that in diverse ways in the following lines.
+One of the first things you need to do when learning a programming language is to create a Hello World code. I will explain how to do that in diverse ways in the following lines.
 
 ### Installing Ruby
 
