@@ -51,7 +51,7 @@ Create a shortcode file. Example: `layouts/shortcodes/asciinema.html` with this 
 
 ```html
 <div id='{{ with .Get "key" }}{{ . }}{{ end }}'></div>
-<script src="{{ .Site.BaseURL }}js/asciinema-player.min.js"></script>
+<script src="{{ .Site.BaseURL }}/js/asciinema-player.min.js"></script>
 <script>
     AsciinemaPlayer.create('/casts/{{ with .Get "key" }}{{ . }}{{ end }}.cast', document.getElementById('{{ with .Get "key" }}{{ . }}{{ end }}'), {
         {{ if .Get "cols" }}cols: "{{ .Get "cols" }}",{{ end }}
