@@ -1,6 +1,6 @@
 ---
 title: Embedding asciinema cast in your Hugo site
-date: 2019-06-02
+date: 2023-04-09
 published: true
 comments: true
 asciinema: true
@@ -40,7 +40,7 @@ Insert this code inside the `head` template section: `layouts/partials/_shared/h
 
 ```html
 {{ if .Params.asciinema }}
-<link rel="stylesheet" type="text/css" href="{{ .Site.BaseURL }}css/asciinema-player.css" />
+<link rel="stylesheet" type="text/css" href="{{ .Site.BaseURL }}/css/asciinema-player.css" />
 {{ end }}
 ```
 > I use a parameter in each blog page to enable this block. So, the if condition is "optional" to use.
