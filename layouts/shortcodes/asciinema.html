@@ -1,20 +1,20 @@
-<p>
-    <asciinema-player
-        src="/casts/{{ with .Get "key" }}{{ . }}{{ end }}.cast"
-        cols="{{ if .Get "cols" }}{{ .Get "cols" }}{{ else }}640{{ end }}"
-        rows="{{ if .Get "rows" }}{{ .Get "rows" }}{{ else }}10{{ end }}"
-        {{ if .Get "autoplay" }}autoplay="{{ .Get "autoplay" }}"{{ end }}
-        {{ if .Get "preload" }}preload="{{ .Get "preload" }}"{{ end }}
-        {{ if .Get "loop" }}loop="{{ .Get "loop" }}"{{ end }}
-        start-at="{{ if .Get "start-at" }}{{ .Get "start-at" }}{{ else }}0{{ end }}"
-        speed="{{ if .Get "speed" }}{{ .Get "speed" }}{{ else }}1{{ end }}"
-        {{ if .Get "idle-time-limit" }}idle-time-limit="{{ .Get "idle-time-limit" }}"{{ end }}
-        {{ if .Get "poster" }}poster="{{ .Get "poster" }}"{{ end }}
-        {{ if .Get "font-size" }}font-size="{{ .Get "font-size" }}"{{ end }}
-        {{ if .Get "theme" }}theme="{{ .Get "theme" }}"{{ end }}
-        {{ if .Get "title" }}title="{{ .Get "title" }}"{{ end }}
-        {{ if .Get "author" }}author="{{ .Get "author" }}"{{ end }}
-        {{ if .Get "author-url" }}author-url="{{ .Get "author-url" }}"{{ end }}
-        {{ if .Get "author-img-url" }}author-img-url="{{ .Get "author-img-url" }}"{{ end }}
-    ></asciinema-player>
-</p>
+<div id='{{ with .Get "key" }}{{ . }}{{ end }}'></div>
+<script src="{{ .Site.BaseURL }}js/asciinema-player.min.js"></script>
+<script>
+    AsciinemaPlayer.create('/casts/{{ with .Get "key" }}{{ . }}{{ end }}.cast', document.getElementById('{{ with .Get "key" }}{{ . }}{{ end }}'), {
+        {{ if .Get "cols" }}cols: "{{ .Get "cols" }}",{{ end }}
+        {{ if .Get "rows" }}rows: "{{ .Get "rows" }}",{{ end }}
+        {{ if .Get "autoPlay" }}autoPlay: "{{ .Get "autoPlay" }}",{{ end }}
+        {{ if .Get "preload" }}preload: "{{ .Get "preload" }}",{{ end }}
+        {{ if .Get "loop" }}loop: "{{ .Get "loop" }}",{{ end }}
+        {{ if .Get "startAt" }}startAt: "{{ .Get "startAt" }}",{{ end }}
+        {{ if .Get "speed" }}speed: "{{ .Get "speed" }}",{{ end }}
+        {{ if .Get "idleTimeLimit" }}idleTimeLimit: "{{ .Get "idleTimeLimit" }}",{{ end }}
+        {{ if .Get "theme" }}theme: "{{ .Get "theme" }}",{{ end }}
+        {{ if .Get "poster" }}poster: "{{ .Get "poster" }}",{{ end }}
+        {{ if .Get "fit" }}fit: "{{ .Get "fit" }}",{{ end }}
+        {{ if .Get "terminalFontSize" }}terminalFontSize: "{{ .Get "terminalFontSize" }}",{{ end }}
+        {{ if .Get "terminalFontFamily" }}terminalFontFamily: "{{ .Get "terminalFontFamily" }}",{{ end }}
+        {{ if .Get "terminalLineHeight" }}terminalLineHeight: "{{ .Get "terminalLineHeight" }}",{{ end }}
+     });
+</script>
